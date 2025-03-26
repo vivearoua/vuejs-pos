@@ -1,0 +1,439 @@
+{
+  "users": [
+    {
+      "id": "U001",
+      "username": "admin1",
+      "password": "hashed_password_1",
+      "role": "admin",
+      "full_name": "John Doe",
+      "email": "john.doe@phonestore.com",
+      "phone": "+1234567890",
+      "created_at": "2024-01-15T10:00:00Z",
+      "last_login": "2025-03-26T08:00:00Z"
+    },
+    {
+      "id": "U002",
+      "username": "cashier1",
+      "password": "hashed_password_2",
+      "role": "cashier",
+      "full_name": "Jane Smith",
+      "email": "jane.smith@phonestore.com",
+      "phone": "+1987654321",
+      "created_at": "2024-02-01T09:30:00Z",
+      "last_login": "2025-03-25T14:00:00Z"
+    },
+    {
+      "id": "U003",
+      "username": "cashier2",
+      "password": "hashed_password_3",
+      "role": "cashier",
+      "full_name": "Mike Johnson",
+      "email": "mike.johnson@phonestore.com",
+      "phone": "+1555123456",
+      "created_at": "2024-03-10T11:00:00Z",
+      "last_login": "2025-03-26T09:00:00Z"
+    }
+  ],
+  "clients": [
+    {
+      "id": "C000",
+      "name": "Client passager",
+      "email": null,
+      "phone": null,
+      "address": null,
+      "registration_date": null,
+      "notes": "Client anonyme ou de passage sans inscription"
+    },
+    {
+      "id": "C001",
+      "name": "Alice Brown",
+      "email": "alice.brown@email.com",
+      "phone": "+1444555666",
+      "address": "123 Rue Principale, Montréal, QC",
+      "registration_date": "2024-06-10T14:00:00Z",
+      "notes": "Client régulier, préfère les produits Samsung"
+    },
+    {
+      "id": "C002",
+      "name": "Bob Wilson",
+      "email": "bob.wilson@email.com",
+      "phone": "+1777888999",
+      "address": "456 Avenue des Pins, Québec, QC",
+      "registration_date": "2024-07-15T09:30:00Z",
+      "notes": "A souvent des réparations"
+    },
+    {
+      "id": "C003",
+      "name": "Clara Lee",
+      "email": "clara.lee@email.com",
+      "phone": "+1666777888",
+      "address": "789 Boulevard St-Laurent, Montréal, QC",
+      "registration_date": "2024-08-01T11:00:00Z",
+      "notes": "Fan de Google Pixel"
+    },
+    {
+      "id": "C004",
+      "name": "David Kim",
+      "email": "david.kim@email.com",
+      "phone": "+1888999000",
+      "address": "321 Rue Sherbrooke, Sherbrooke, QC",
+      "registration_date": "2024-09-10T13:00:00Z",
+      "notes": "Acheté plusieurs accessoires"
+    },
+    {
+      "id": "C005",
+      "name": "Emma Carter",
+      "email": "emma.carter@email.com",
+      "phone": "+1222333444",
+      "address": "654 Rue Ste-Catherine, Montréal, QC",
+      "registration_date": "2024-10-05T15:00:00Z",
+      "notes": "Client fidèle depuis 2024"
+    },
+    {
+      "id": "C006",
+      "name": "Liam Patel",
+      "email": "liam.patel@email.com",
+      "phone": "+1333444555",
+      "address": "987 Avenue Laurier, Québec, QC",
+      "registration_date": "2024-11-01T10:00:00Z",
+      "notes": "Préfère les paiements par carte"
+    },
+    {
+      "id": "C007",
+      "name": "Sophie Nguyen",
+      "email": "sophie.nguyen@email.com",
+      "phone": "+1444666777",
+      "address": "147 Rue Peel, Montréal, QC",
+      "registration_date": "2024-12-15T12:00:00Z",
+      "notes": "Aime les produits OnePlus"
+    },
+    {
+      "id": "C008",
+      "name": "Thomas Dupont",
+      "email": "thomas.dupont@email.com",
+      "phone": "+1555777888",
+      "address": "258 Rue des Ormes, Laval, QC",
+      "registration_date": "2025-01-20T09:00:00Z",
+      "notes": "Nouveau client 2025"
+    },
+    {
+      "id": "C009",
+      "name": "Marie Leclerc",
+      "email": "marie.leclerc@email.com",
+      "phone": "+1666888999",
+      "address": "369 Boulevard Charest, Québec, QC",
+      "registration_date": "2025-02-10T14:30:00Z",
+      "notes": "Intéressée par les accessoires audio"
+    }
+  ],
+  "phones": [
+    {
+      "id": "P001",
+      "brand": "Samsung",
+      "model": "Galaxy S23",
+      "storage": "128GB",
+      "color": "Phantom Black",
+      "price": 799.99,
+      "stock": 25,
+      "imei_prefix": "354123",
+      "warranty_months": 12,
+      "added_date": "2024-03-01T12:00:00Z"
+    },
+    {
+      "id": "P002",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro",
+      "storage": "256GB",
+      "color": "Space Black",
+      "price": 1099.99,
+      "stock": 15,
+      "imei_prefix": "356789",
+      "warranty_months": 24,
+      "added_date": "2024-03-05T14:00:00Z"
+    },
+    {
+      "id": "P003",
+      "brand": "Google",
+      "model": "Pixel 8",
+      "storage": "128GB",
+      "color": "Obsidian",
+      "price": 699.99,
+      "stock": 20,
+      "imei_prefix": "352456",
+      "warranty_months": 12,
+      "added_date": "2024-10-15T10:00:00Z"
+    },
+    {
+      "id": "P004",
+      "brand": "OnePlus",
+      "model": "11",
+      "storage": "256GB",
+      "color": "Titan Black",
+      "price": 849.99,
+      "stock": 10,
+      "imei_prefix": "359876",
+      "warranty_months": 18,
+      "added_date": "2024-11-01T09:00:00Z"
+    }
+  ],
+  "accessories": [
+    {
+      "id": "A001",
+      "name": "Wireless Charger",
+      "brand": "Belkin",
+      "price": 29.99,
+      "stock": 50,
+      "type": "charger",
+      "compatible_with": [
+        "Samsung Galaxy S23",
+        "iPhone 14 Pro",
+        "Pixel 8"
+      ],
+      "added_date": "2024-03-10T09:00:00Z"
+    },
+    {
+      "id": "A002",
+      "name": "Rugged Case",
+      "brand": "Spigen",
+      "price": 24.99,
+      "stock": 75,
+      "type": "case",
+      "compatible_with": [
+        "iPhone 14 Pro",
+        "OnePlus 11"
+      ],
+      "added_date": "2024-03-12T11:00:00Z"
+    },
+    {
+      "id": "A003",
+      "name": "Bluetooth Earbuds",
+      "brand": "Jabra",
+      "price": 79.99,
+      "stock": 30,
+      "type": "audio",
+      "compatible_with": [
+        "Universal"
+      ],
+      "added_date": "2024-04-01T13:00:00Z"
+    },
+    {
+      "id": "A004",
+      "name": "Screen Protector",
+      "brand": "Zagg",
+      "price": 19.99,
+      "stock": 100,
+      "type": "screen_protector",
+      "compatible_with": [
+        "Samsung Galaxy S23",
+        "Pixel 8"
+      ],
+      "added_date": "2024-05-15T15:00:00Z"
+    },
+    {
+      "id": "A005",
+      "name": "USB-C Cable",
+      "brand": "Anker",
+      "price": 14.99,
+      "stock": 200,
+      "type": "cable",
+      "compatible_with": [
+        "Universal"
+      ],
+      "added_date": "2024-06-01T10:00:00Z"
+    }
+  ],
+  "repairs": [
+    {
+      "id": "R001",
+      "phone_id": "P001",
+      "client_id": "C001",
+      "customer_name": "Alice Brown",
+      "customer_phone": "+1444555666",
+      "issue": "Screen cracked",
+      "cost": 120.00,
+      "parts_used": [
+        "OLED Screen"
+      ],
+      "status": "In Progress",
+      "start_date": "2025-03-20T10:00:00Z",
+      "estimated_completion": "2025-03-27T16:00:00Z"
+    },
+    {
+      "id": "R002",
+      "phone_id": "P002",
+      "client_id": "C002",
+      "customer_name": "Bob Wilson",
+      "customer_phone": "+1777888999",
+      "issue": "Battery replacement",
+      "cost": 80.00,
+      "parts_used": [
+        "Battery"
+      ],
+      "status": "Completed",
+      "start_date": "2025-03-15T14:00:00Z",
+      "completed_date": "2025-03-18T12:00:00Z"
+    },
+    {
+      "id": "R003",
+      "phone_id": "P003",
+      "client_id": "C003",
+      "customer_name": "Clara Lee",
+      "customer_phone": "+1666777888",
+      "issue": "Charging port failure",
+      "cost": 65.00,
+      "parts_used": [
+        "USB-C Port"
+      ],
+      "status": "Pending",
+      "start_date": "2025-03-24T09:00:00Z",
+      "estimated_completion": "2025-03-28T14:00:00Z"
+    },
+    {
+      "id": "R004",
+      "phone_id": "P004",
+      "client_id": "C004",
+      "customer_name": "David Kim",
+      "customer_phone": "+1888999000",
+      "issue": "Water damage",
+      "cost": 150.00,
+      "parts_used": [
+        "Logic Board Cleaning"
+      ],
+      "status": "In Progress",
+      "start_date": "2025-03-25T11:00:00Z",
+      "estimated_completion": "2025-03-29T15:00:00Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "T001",
+      "user_id": "U002",
+      "client_id": "C005",
+      "type": "sale",
+      "items": [
+        {
+          "item_type": "phone",
+          "item_id": "P001",
+          "quantity": 1,
+          "unit_price": 799.99
+        },
+        {
+          "item_type": "accessory",
+          "item_id": "A001",
+          "quantity": 1,
+          "unit_price": 29.99
+        },
+        {
+          "item_type": "accessory",
+          "item_id": "A004",
+          "quantity": 1,
+          "unit_price": 19.99
+        }
+      ],
+      "total_amount": 849.97,
+      "discount": 0.00,
+      "payment_method": "Credit Card",
+      "timestamp": "2025-03-25T15:30:00Z",
+      "customer_name": "Emma Carter"
+    },
+    {
+      "id": "T002",
+      "user_id": "U003",
+      "client_id": "C006",
+      "type": "sale",
+      "items": [
+        {
+          "item_type": "phone",
+          "item_id": "P003",
+          "quantity": 1,
+          "unit_price": 699.99
+        },
+        {
+          "item_type": "accessory",
+          "item_id": "A003",
+          "quantity": 1,
+          "unit_price": 79.99
+        }
+      ],
+      "total_amount": 779.98,
+      "discount": 0.00,
+      "payment_method": "Debit Card",
+      "timestamp": "2025-03-26T10:15:00Z",
+      "customer_name": "Liam Patel"
+    },
+    {
+      "id": "T003",
+      "user_id": "U002",
+      "client_id": "C002",
+      "type": "repair",
+      "repair_id": "R002",
+      "total_amount": 80.00,
+      "discount": 0.00,
+      "payment_method": "Cash",
+      "timestamp": "2025-03-18T12:30:00Z",
+      "customer_name": "Bob Wilson"
+    },
+    {
+      "id": "T004",
+      "user_id": "U003",
+      "client_id": "C007",
+      "type": "sale",
+      "items": [
+        {
+          "item_type": "phone",
+          "item_id": "P004",
+          "quantity": 1,
+          "unit_price": 849.99
+        },
+        {
+          "item_type": "accessory",
+          "item_id": "A002",
+          "quantity": 2,
+          "unit_price": 24.99
+        }
+      ],
+      "total_amount": 899.97,
+      "discount": 0.00,
+      "payment_method": "Credit Card",
+      "timestamp": "2025-03-26T11:00:00Z",
+      "customer_name": "Sophie Nguyen"
+    }
+  ],
+  "stats": {
+    "total_sales": {
+      "amount": 2529.92,
+      "count": 4,
+      "last_updated": "2025-03-26T11:00:00Z"
+    },
+    "total_repairs": {
+      "amount": 415.00,
+      "count": 4,
+      "last_updated": "2025-03-26T11:00:00Z"
+    },
+    "inventory": {
+      "phones_in_stock": 68,
+      "accessories_in_stock": 455,
+      "last_updated": "2025-03-26T11:00:00Z"
+    },
+    "top_selling_products": [
+      {
+        "item_id": "P001",
+        "item_type": "phone",
+        "units_sold": 5,
+        "total_revenue": 3999.95
+      },
+      {
+        "item_id": "A003",
+        "item_type": "accessory",
+        "units_sold": 3,
+        "total_revenue": 239.97
+      }
+    ],
+    "repair_status_summary": {
+      "pending": 1,
+      "in_progress": 2,
+      "completed": 1,
+      "last_updated": "2025-03-26T11:00:00Z"
+    }
+  }
+}
