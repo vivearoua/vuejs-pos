@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSession } from '../context/SessionContext';
+import { logger } from '../utils/logger';
+import ErrorBoundary from './ErrorBoundary';
 
 const ProductCard: React.FC<{ 
   product: { 
@@ -16,24 +18,25 @@ const ProductCard: React.FC<{
   const name = isPhone ? `${product.brand} ${product.model}` : product.name;
   const details = isPhone 
     ? `${product.storage} - ${product.color}`
-    : `${product.brand} - Compatible: ${product.compatible_with.join(', ')}`;
+    : `${product.brand} - Compatible avec : ${product.compatible_with.join(', ')}`;
 
   return (
     <div
       onClick={onAdd}
       className="border rounded-lg p-3 cursor-pointer hover:shadow-lg transition-shadow bg-white"
+      aria-label={`Ajouter ${name} au panier`}
     >
       <div className="font-medium text-lg mb-1">{name}</div>
       <div className="text-sm text-gray-600 mb-2">{details}</div>
       <div className="flex justify-between items-center">
-        <div className="text-purple-600 font-bold">{product.price.toFixed(2)} $</div>
-        <div className="text-sm text-gray-500">Stock: {product.stock}</div>
+        <div className="text-purple-600 font-bold">{product.price.toFixed(2)} €</div>
+        <div className="text-sm text-gray-500">Stock : {product.stock}</div>
       </div>
     </div>
   );
 };
 
-const SessionPage: React.FC = () => {
+function SessionContent() {
   const {
     customer,
     cart,
@@ -54,19 +57,110 @@ const SessionPage: React.FC = () => {
     total
   } = useSession();
 
+  useEffect(() => {
+    logger.info('Session page mounted', {
+      customer,
+      cartSize: cart.length,
+      cartTotal: total,
+      productsCount: filteredProducts.length
+    });
+  }, []);
+
+  const handleCustomerChange = (newCustomer: string) => {
+    try {
+      logger.info('Customer changed', {
+        previousCustomer: customer,
+        newCustomer
+      });
+      setCustomer(newCustomer);
+    } catch (err) {
+      logger.error('Error changing customer', err);
+    }
+  };
+
+  const handleSearch = (term: string) => {
+    try {
+      setSearchTerm(term);
+      logger.info('Product search performed', {
+        searchTerm: term,
+        resultsCount: filteredProducts.length
+      });
+    } catch (err) {
+      logger.error('Error during product search', err);
+    }
+  };
+
+  const handleAddToCart = (product: any) => {
+    try {
+      addToCart(product);
+      logger.info('Product added to cart', {
+        productId: product.id,
+        productName: product.type === 'phone' ? `${product.brand} ${product.model}` : product.name,
+        cartSize: cart.length + 1
+      });
+    } catch (err) {
+      logger.error('Error adding product to cart', err);
+    }
+  };
+
+  const handleUpdateQuantity = (id: string, quantity: number) => {
+    try {
+      updateQuantity(id, quantity);
+      const item = cart.find(i => i.id === id);
+      logger.info('Cart item quantity updated', {
+        productId: id,
+        productName: item?.name,
+        previousQuantity: item?.quantity,
+        newQuantity: quantity
+      });
+    } catch (err) {
+      logger.error('Error updating cart item quantity', err);
+    }
+  };
+
+  const handleRemoveFromCart = (id: string) => {
+    try {
+      const item = cart.find(i => i.id === id);
+      removeFromCart(id);
+      logger.info('Product removed from cart', {
+        productId: id,
+        productName: item?.name,
+        cartSize: cart.length - 1
+      });
+    } catch (err) {
+      logger.error('Error removing product from cart', err);
+    }
+  };
+
+  const handleResetSession = () => {
+    try {
+      logger.info('Session reset requested', {
+        cartSize: cart.length,
+        cartTotal: total
+      });
+      resetSession();
+    } catch (err) {
+      logger.error('Error resetting session', err);
+    }
+  };
+
   return (
     <div className="p-4 h-[calc(100vh-6rem)] flex flex-col">
       <div className="flex items-center space-x-4 mb-4">
-        <button className="bg-purple-100 text-purple-600 px-4 py-2 rounded-lg text-sm">
+        <button 
+          className="bg-purple-100 text-purple-600 px-4 py-2 rounded-lg text-sm"
+          aria-label="Créer un nouveau client"
+        >
           🧑 Nouveau Client
         </button>
         <div className="w-64">
           <select 
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 text-sm py-1"
             value={customer}
-            onChange={(e) => setCustomer(e.target.value)}
+            onChange={(e) => handleCustomerChange(e.target.value)}
+            aria-label="Sélectionner un client"
           >
-            <option value="Passager">Passager</option>
+            <option value="Passager">Client Passager</option>
             {/* Autres clients peuvent être ajoutés ici */}
           </select>
         </div>
@@ -93,7 +187,7 @@ const SessionPage: React.FC = () => {
                       <div className="text-sm">{item.name}</div>
                       <div className="text-xs text-gray-500">{item.type === 'phone' ? 'Téléphone' : 'Accessoire'}</div>
                     </td>
-                    <td className="text-right text-sm">{item.price.toFixed(2)} $</td>
+                    <td className="text-right text-sm">{item.price.toFixed(2)} €</td>
                     <td className="text-right">
                       <input
                         type="number"
@@ -102,17 +196,19 @@ const SessionPage: React.FC = () => {
                         onChange={(e) => {
                           const newQuantity = parseInt(e.target.value);
                           if (!isNaN(newQuantity) && newQuantity > 0) {
-                            updateQuantity(item.id, newQuantity);
+                            handleUpdateQuantity(item.id, newQuantity);
                           }
                         }}
                         className="w-12 text-right border rounded text-sm py-1"
+                        aria-label={`Quantité de ${item.name}`}
                       />
                     </td>
-                    <td className="text-right text-sm">{item.subtotal.toFixed(2)} $</td>
+                    <td className="text-right text-sm">{item.subtotal.toFixed(2)} €</td>
                     <td className="text-right">
                       <button
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => handleRemoveFromCart(item.id)}
                         className="text-red-500 hover:text-red-700 text-sm"
+                        aria-label={`Supprimer ${item.name} du panier`}
                       >
                         ✕
                       </button>
@@ -126,7 +222,7 @@ const SessionPage: React.FC = () => {
           <div className="border-t mt-4 pt-4">
             <div className="grid grid-cols-3 gap-3 mb-4">
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Taxe (%)</label>
+                <label className="block text-xs font-medium text-gray-700 mb-1">TVA (%)</label>
                 <input
                   type="number"
                   min="0"
@@ -139,6 +235,7 @@ const SessionPage: React.FC = () => {
                     }
                   }}
                   className="w-full rounded border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 text-sm py-1"
+                  aria-label="Taux de TVA en pourcentage"
                 />
               </div>
               <div>
@@ -155,10 +252,11 @@ const SessionPage: React.FC = () => {
                     }
                   }}
                   className="w-full rounded border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 text-sm py-1"
+                  aria-label="Taux de remise en pourcentage"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Livraison ($)</label>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Livraison (€)</label>
                 <input
                   type="number"
                   min="0"
@@ -170,24 +268,29 @@ const SessionPage: React.FC = () => {
                     }
                   }}
                   className="w-full rounded border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 text-sm py-1"
+                  aria-label="Frais de livraison"
                 />
               </div>
             </div>
 
             <div className="flex justify-between items-center mb-4 text-lg font-bold">
-              <span>Total:</span>
-              <span>{total.toFixed(2)} $</span>
+              <span>Total :</span>
+              <span>{total.toFixed(2)} €</span>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <button
-                onClick={resetSession}
+                onClick={handleResetSession}
                 className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm"
+                aria-label="Réinitialiser la session"
               >
                 🔄 Réinitialiser
               </button>
-              <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 text-sm">
-                💳 Payer Maintenant
+              <button 
+                className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 text-sm"
+                aria-label="Procéder au paiement"
+              >
+                💳 Payer
               </button>
             </div>
           </div>
@@ -200,8 +303,9 @@ const SessionPage: React.FC = () => {
               type="text"
               placeholder="Rechercher par Nom / Marque / Modèle"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => handleSearch(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+              aria-label="Rechercher des produits"
             />
           </div>
 
@@ -211,7 +315,7 @@ const SessionPage: React.FC = () => {
                 <ProductCard
                   key={product.id}
                   product={product}
-                  onAdd={() => addToCart(product)}
+                  onAdd={() => handleAddToCart(product)}
                 />
               ))}
             </div>
@@ -220,6 +324,21 @@ const SessionPage: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
-export default SessionPage; 
+export default function SessionPage() {
+  return (
+    <ErrorBoundary
+      fallback={
+        <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="text-red-600 text-center">
+            <h2 className="text-lg font-bold">Une erreur est survenue</h2>
+            <p>Impossible de charger la session</p>
+          </div>
+        </div>
+      }
+    >
+      <SessionContent />
+    </ErrorBoundary>
+  );
+}
