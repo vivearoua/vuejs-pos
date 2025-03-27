@@ -1,4 +1,5 @@
 import { PaymentDetails } from '../components/PaymentModal';
+import { inventoryService } from './inventoryService';
 
 export interface CartItem {
   id: string;
@@ -64,10 +65,17 @@ class TransactionService {
   }
 
   private updateInventory(items: CartItem[]): void {
-    // Mettre à jour le stock pour chaque article
     items.forEach(item => {
-      // TODO: Implémenter la mise à jour du stock
-      console.log(`Mise à jour du stock pour ${item.name}: -${item.quantity}`);
+      try {
+        inventoryService.addMovement({
+          productId: item.id,
+          type: 'out',
+          quantity: item.quantity,
+          reason: 'sale'
+        });
+      } catch (err) {
+        console.error(`Erreur lors de la mise à jour du stock pour ${item.name}:`, err);
+      }
     });
   }
 
