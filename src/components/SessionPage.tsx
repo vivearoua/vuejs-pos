@@ -342,7 +342,7 @@ function SessionContent() {
                   className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-sm"
                   aria-label="Procéder au paiement"
                 >
-                  💳 Payer
+                  💶 Payer en espèces
                 </button>
               </div>
             </div>
