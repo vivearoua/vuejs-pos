@@ -83,7 +83,7 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
   - [x] Cart (ajout du suivi des transactions et du panier)
   - [x] Inventory (ajout du suivi du stock et des filtres)
   - [x] Repairs (ajout du suivi des réparations et des filtres)
-  - [ ] Transactions
+  - [x] Transactions (ajout du suivi des transactions et des filtres)
   - [ ] SessionPage
 
 ## Points d'Amélioration du Products
@@ -133,6 +133,19 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
 - [ ] Ajout de la gestion des statuts
 - [ ] Ajout des notifications pour les dates limites
 - [ ] Historique des modifications de réparation
+
+## Points d'Amélioration des Transactions
+- [x] Ajout du suivi des actions utilisateur
+  - Filtrage par type
+  - Recherche par client
+  - Statistiques des transactions
+- [x] Logging des statistiques des transactions
+- [x] Gestion des erreurs avec ErrorBoundary
+- [x] Traduction en français
+- [x] Amélioration de l'accessibilité (aria-labels)
+- [ ] Ajout de l'export des transactions
+- [ ] Ajout des graphiques de tendance
+- [ ] Historique des modifications
 
 ## Prochaines Tâches
 1. [ ] Intégrer le logging dans les composants restants
