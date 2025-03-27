@@ -41,6 +41,8 @@ interface SessionContextType {
   shipping: number;
   searchTerm: string;
   filteredProducts: Product[];
+  subtotal: number;
+  total: number;
   setCustomer: (customer: string) => void;
   addToCart: (product: Product) => void;
   removeFromCart: (productId: string) => void;
@@ -50,10 +52,7 @@ interface SessionContextType {
   setShipping: (shipping: number) => void;
   setSearchTerm: (term: string) => void;
   resetSession: () => void;
-  total: number;
 }
-
-const SessionContext = createContext<SessionContextType | undefined>(undefined);
 
 // Convertir les téléphones et accessoires en format uniforme
 const convertToProducts = (): Product[] => {
@@ -144,12 +143,8 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setCustomer('Passager');
   }, []);
 
-  const total = React.useMemo(() => {
-    const subtotal = cart.reduce((sum, item) => sum + item.subtotal, 0);
-    const taxAmount = (subtotal * tax) / 100;
-    const discountAmount = (subtotal * discount) / 100;
-    return subtotal + taxAmount - discountAmount + shipping;
-  }, [cart, tax, discount, shipping]);
+  const subtotal = cart.reduce((sum, item) => sum + item.subtotal, 0);
+  const total = subtotal * (1 + tax / 100) * (1 - discount / 100) + shipping;
 
   const value = {
     customer,
@@ -159,6 +154,8 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     shipping,
     searchTerm,
     filteredProducts,
+    subtotal,
+    total,
     setCustomer,
     addToCart,
     removeFromCart,
@@ -168,7 +165,6 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setShipping,
     setSearchTerm,
     resetSession,
-    total,
   };
 
   return <SessionContext.Provider value={value}>{children}</SessionContext.Provider>;
@@ -182,4 +178,6 @@ export const useSession = () => {
   return context;
 };
 
-export default SessionContext; 
+const SessionContext = createContext<SessionContextType | undefined>(undefined);
+
+export default SessionContext;
