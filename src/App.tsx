@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { LayoutGrid, ShoppingCart, Settings, BarChart3, PenTool as Tool, Package, History, DollarSign } from 'lucide-react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
@@ -12,6 +12,7 @@ import Repairs from './components/Repairs';
 import Inventory from './components/Inventory';
 import Transactions from './components/Transactions';
 import SessionPage from './components/SessionPage';
+import InventoryPage from './components/InventoryPage';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
@@ -87,7 +88,7 @@ function Layout({ children }: { children: React.ReactNode }) {
             {activeTab === 'products' && <Products />}
             {activeTab === 'cart' && <Cart />}
             {activeTab === 'repairs' && <Repairs />}
-            {activeTab === 'inventory' && <Inventory />}
+            {activeTab === 'inventory' && <InventoryPage />}
             {activeTab === 'transactions' && <Transactions />}
             {activeTab === 'settings' && <div>Settings</div>}
           </div>
@@ -116,7 +117,7 @@ function App() {
                         <Route path="/products" element={<Products />} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/repairs" element={<Repairs />} />
-                        <Route path="/inventory" element={<Inventory />} />
+                        <Route path="/inventory" element={<InventoryPage />} />
                         <Route path="/transactions" element={<Transactions />} />
                         <Route path="/settings" element={<div>Settings</div>} />
                       </Routes>
