@@ -1,6 +1,6 @@
 import { PaymentDetails } from '../components/PaymentModal';
 import { inventoryService } from './inventoryService';
-import { fileService } from './fileService';
+import storeData from '../data/store.json';
 
 export interface CartItem {
   id: string;
@@ -28,18 +28,54 @@ export interface Transaction {
   payment: PaymentDetails;
 }
 
+// Interface pour le format de transaction dans store.json
+interface BaseStoreTransaction {
+  id: string;
+  user_id: string;
+  client_id: string;
+  type: string;
+  total_amount: number;
+  discount: number;
+  payment_method: string;
+  timestamp: string;
+  customer_name: string;
+}
+
+interface SaleStoreTransaction extends BaseStoreTransaction {
+  type: 'sale';
+  items: {
+    item_type: string;
+    item_id: string;
+    quantity: number;
+    unit_price: number;
+  }[];
+}
+
+interface RepairStoreTransaction extends BaseStoreTransaction {
+  type: 'repair';
+  repair_id: string;
+}
+
+type StoreTransaction = SaleStoreTransaction | RepairStoreTransaction;
+
 class TransactionService {
   private static instance: TransactionService;
   private transactions: Transaction[] = [];
+  private storeTransactions: StoreTransaction[] = [];
 
   private constructor() {
-    // Charger les transactions depuis le fichier JSON
+    // Charger les transactions depuis le localStorage
+    const savedTransactions = localStorage.getItem('transactions');
+    if (savedTransactions) {
+      this.transactions = JSON.parse(savedTransactions);
+    }
+    
+    // Charger les transactions depuis store.json
     try {
-      const rawData = require('../data/transactions.json');
-      this.transactions = Array.isArray(rawData) ? rawData : [];
+      this.storeTransactions = storeData.transactions as StoreTransaction[];
     } catch (error) {
-      console.error('Erreur lors du chargement des transactions:', error);
-      this.transactions = [];
+      console.error('Erreur lors du chargement des transactions depuis store.json:', error);
+      this.storeTransactions = [];
     }
   }
 
@@ -52,15 +88,78 @@ class TransactionService {
 
   private saveToStorage(): void {
     try {
-      // Sauvegarder dans localStorage comme backup
+      // Sauvegarder dans localStorage
       localStorage.setItem('transactions', JSON.stringify(this.transactions));
       
-      // Sauvegarder dans le fichier JSON via le fileService
-      fileService.saveTransactions(this.transactions);
-      
-      console.log('Transactions sauvegardées:', this.transactions.length);
+      // Convertir la transaction au format store.json
+      const lastTransaction = this.transactions[this.transactions.length - 1];
+      if (lastTransaction) {
+        const storeTransaction: SaleStoreTransaction = this.convertToStoreFormat(lastTransaction);
+        
+        // Ajouter à la liste des transactions du store
+        this.storeTransactions.push(storeTransaction);
+        
+        // Afficher les données qui seraient sauvegardées dans store.json
+        console.log('Transaction ajoutée à store.json:', storeTransaction);
+        console.log('Nouvelles transactions dans store.json:', this.storeTransactions);
+        
+        // Dans une application réelle, nous sauvegarderions dans le fichier
+        // mais comme nous sommes dans un navigateur, nous ne pouvons pas modifier directement le fichier
+        this.downloadUpdatedStoreJson();
+      }
     } catch (error) {
       console.error('Erreur lors de la sauvegarde des transactions:', error);
+    }
+  }
+
+  // Convertir une transaction au format utilisé dans store.json
+  private convertToStoreFormat(transaction: Transaction): SaleStoreTransaction {
+    return {
+      id: transaction.id,
+      user_id: 'U002', // ID du caissier (à remplacer par l'ID réel)
+      client_id: transaction.customerId,
+      type: 'sale',
+      items: transaction.items.map(item => ({
+        item_type: item.type,
+        item_id: item.id,
+        quantity: item.quantity,
+        unit_price: item.price
+      })),
+      total_amount: transaction.total,
+      discount: transaction.discount,
+      payment_method: transaction.payment.method === 'cash' ? 'Cash' : 'Credit Card',
+      timestamp: transaction.date,
+      customer_name: transaction.customer
+    };
+  }
+
+  // Télécharger le fichier store.json mis à jour
+  private downloadUpdatedStoreJson(): void {
+    try {
+      // Créer une copie du store.json avec les transactions mises à jour
+      const updatedStore = { ...storeData, transactions: this.storeTransactions };
+      
+      // Créer un blob et proposer le téléchargement
+      const jsonContent = JSON.stringify(updatedStore, null, 2);
+      const blob = new Blob([jsonContent], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      
+      // Créer un lien de téléchargement
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'store.json';
+      
+      // Simuler un clic pour télécharger le fichier
+      document.body.appendChild(link);
+      link.click();
+      
+      // Nettoyer
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      console.log('Fichier store.json mis à jour et prêt à être téléchargé');
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour du fichier store.json:', error);
     }
   }
 
