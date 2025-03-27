@@ -259,11 +259,11 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
    - [x] Filtrage par niveau
    - [x] Recherche dans les logs
    - [x] Actualisation automatique
-4. [x] Configurer le reporting automatique en production
-   - [x] Configuration de l'endpoint de production
-   - [x] Mise en place de la rotation des logs
-   - [x] Ajout de la gestion des erreurs réseau
-   - [x] Configuration de la rétention des logs
+4. [x] Créer une API REST pour les transactions
+   - [x] Endpoint GET /api/transactions pour récupérer les transactions
+   - [x] Endpoint POST /api/newtransaction pour ajouter des transactions
+   - [x] Documentation de l'API avec Postman
+   - [x] Intégration avec le fichier store.json
 
 ## Points d'Amélioration du Système de Logging
 - [x] Service de reporting d'erreurs
