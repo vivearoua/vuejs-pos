@@ -1,78 +1,77 @@
+import { errorReporting } from '../services/errorReporting';
+
 type LogLevel = 'info' | 'warn' | 'error';
 
 interface LogEntry {
   timestamp: string;
   level: LogLevel;
   message: string;
-  details?: any;
+  data?: any;
 }
 
 class Logger {
   private static instance: Logger;
   private logs: LogEntry[] = [];
-  private readonly maxLogs = 1000;
+  private readonly maxLogs: number = 1000;
 
   private constructor() {}
 
-  static getInstance(): Logger {
+  public static getInstance(): Logger {
     if (!Logger.instance) {
       Logger.instance = new Logger();
     }
     return Logger.instance;
   }
 
-  private formatLog(level: LogLevel, message: string, details?: any): LogEntry {
-    return {
+  private log(level: LogLevel, message: string, data?: any) {
+    const entry: LogEntry = {
       timestamp: new Date().toISOString(),
       level,
       message,
-      details
+      data
     };
-  }
 
-  private saveLog(entry: LogEntry) {
+    // Ajouter au buffer local
     this.logs.push(entry);
     if (this.logs.length > this.maxLogs) {
       this.logs.shift();
     }
-    
-    // Save to localStorage in development
+
+    // Log dans la console en développement
     if (process.env.NODE_ENV === 'development') {
-      try {
-        localStorage.setItem('app_logs', JSON.stringify(this.logs));
-      } catch (e) {
-        console.warn('Failed to save logs to localStorage:', e);
-      }
+      const consoleMethod = level === 'error' ? console.error :
+                          level === 'warn' ? console.warn :
+                          console.log;
+      consoleMethod(`[${entry.timestamp}] ${level.toUpperCase()}: ${message}`, data || '');
+    }
+
+    // Reporter les erreurs et avertissements au service de reporting
+    if (level === 'error' || level === 'warn') {
+      errorReporting.reportMessage(message, 'Logger', {
+        level,
+        data
+      });
     }
   }
 
-  info(message: string, details?: any) {
-    const entry = this.formatLog('info', message, details);
-    this.saveLog(entry);
-    console.log(`[INFO] ${message}`, details || '');
+  public info(message: string, data?: any) {
+    this.log('info', message, data);
   }
 
-  warn(message: string, details?: any) {
-    const entry = this.formatLog('warn', message, details);
-    this.saveLog(entry);
-    console.warn(`[WARN] ${message}`, details || '');
+  public warn(message: string, data?: any) {
+    this.log('warn', message, data);
   }
 
-  error(message: string, error?: Error | any) {
-    const entry = this.formatLog('error', message, error);
-    this.saveLog(entry);
-    console.error(`[ERROR] ${message}`, error || '');
+  public error(message: string, data?: any) {
+    this.log('error', message, data);
   }
 
-  getLogs(): LogEntry[] {
+  public getLogs(): LogEntry[] {
     return [...this.logs];
   }
 
-  clearLogs() {
+  public clear() {
     this.logs = [];
-    if (process.env.NODE_ENV === 'development') {
-      localStorage.removeItem('app_logs');
-    }
   }
 }
 

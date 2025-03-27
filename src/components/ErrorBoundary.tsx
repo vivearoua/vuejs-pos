@@ -1,9 +1,10 @@
-import { Component, ErrorInfo, ReactNode } from 'react';
+import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { logger } from '../utils/logger';
+import { errorReporting } from '../services/errorReporting';
 
 interface Props {
   children: ReactNode;
-  fallback?: ReactNode;
+  fallback: ReactNode;
 }
 
 interface State {
@@ -11,29 +12,31 @@ interface State {
 }
 
 class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false
-  };
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false };
+  }
 
-  public static getDerivedStateFromError(): State {
+  static getDerivedStateFromError(_: Error): State {
     return { hasError: true };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    logger.error('React component error:', {
-      error,
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    logger.error('Component error caught', {
+      error: error.message,
       componentStack: errorInfo.componentStack
+    });
+
+    // Envoyer l'erreur au service de reporting
+    errorReporting.reportError(error, 'ErrorBoundary', {
+      componentStack: errorInfo.componentStack,
+      reactVersion: React.version
     });
   }
 
-  public render() {
+  render() {
     if (this.state.hasError) {
-      return this.props.fallback || (
-        <div className="p-4 text-red-600">
-          <h2 className="text-lg font-bold">Something went wrong</h2>
-          <p>Please try refreshing the page</p>
-        </div>
-      );
+      return this.props.fallback;
     }
 
     return this.props.children;
