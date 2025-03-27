@@ -16,11 +16,11 @@ class ErrorReportingService {
   private readonly environment: string;
   private queue: ErrorReport[] = [];
   private retryCount: number = 0;
-  private flushTimeout: NodeJS.Timeout | null = null;
+  private flushTimeout: number | null = null;
 
   private constructor() {
-    this.endpoint = process.env.REACT_APP_ERROR_REPORTING_ENDPOINT || config.errorReporting.endpoint;
-    this.environment = process.env.NODE_ENV || 'development';
+    this.endpoint = import.meta.env.VITE_ERROR_REPORTING_ENDPOINT || config.errorReporting.endpoint;
+    this.environment = import.meta.env.MODE || 'development';
     this.startAutoFlush();
   }
 
@@ -33,9 +33,16 @@ class ErrorReportingService {
 
   private startAutoFlush(): void {
     if (this.environment === 'production') {
-      this.flushTimeout = setInterval(() => {
+      this.flushTimeout = window.setInterval(() => {
         this.flushQueue();
       }, config.production.flushInterval);
+    }
+  }
+
+  public stopAutoFlush(): void {
+    if (this.flushTimeout !== null) {
+      window.clearInterval(this.flushTimeout);
+      this.flushTimeout = null;
     }
   }
 
@@ -95,7 +102,7 @@ class ErrorReportingService {
       additionalInfo: {
         ...additionalInfo,
         environment: this.environment,
-        version: process.env.REACT_APP_VERSION || 'unknown'
+        version: import.meta.env.VITE_APP_VERSION || 'unknown'
       }
     };
 
@@ -118,9 +125,7 @@ class ErrorReportingService {
 
   // Nettoyage lors de la fermeture de l'application
   public cleanup(): void {
-    if (this.flushTimeout) {
-      clearInterval(this.flushTimeout);
-    }
+    this.stopAutoFlush();
     this.flushQueue(); // Envoyer les erreurs restantes
   }
 }

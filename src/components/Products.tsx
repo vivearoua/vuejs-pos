@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import storeData from '../data/store.json';
 import { Phone, Accessory } from '../types';
 import { Search, Filter } from 'lucide-react';
+import { logger } from '../utils/logger';
+import ErrorBoundary from './ErrorBoundary';
 
-function Products() {
+type ProductType = 'all' | 'phone' | 'accessory';
+
+function ProductsContent() {
   const { addToCart } = useCart();
   const [searchTerm, setSearchTerm] = useState('');
-  const [category, setCategory] = useState<'all' | 'phones' | 'accessories'>('all');
+  const [category, setCategory] = useState<ProductType>('all');
 
   const phones: Phone[] = storeData.phones;
   const accessories: Accessory[] = storeData.accessories;
+
+  useEffect(() => {
+    logger.info('Products page mounted', {
+      totalPhones: phones.length,
+      totalAccessories: accessories.length
+    });
+  }, [phones.length, accessories.length]);
+
+  const matchesCategory = (product: { type: 'phone' | 'accessory' }) => {
+    if (category === 'all') return true;
+    return product.type === category;
+  };
 
   const filteredProducts = [...phones.map(phone => ({
     ...phone,
@@ -24,20 +40,42 @@ function Products() {
     details: acc.brand
   }))].filter(product => {
     const matchesSearch = product.displayName.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = category === 'all' || category === product.type;
-    return matchesSearch && matchesCategory;
+    return matchesSearch && matchesCategory(product);
   });
+
+  useEffect(() => {
+    if (searchTerm || category !== 'all') {
+      logger.info('Products filtered', {
+        searchTerm,
+        category,
+        resultsCount: filteredProducts.length
+      });
+    }
+  }, [searchTerm, category, filteredProducts.length]);
+
+  const handleAddToCart = (product: any) => {
+    try {
+      logger.info('Adding product to cart', {
+        productId: product.id,
+        productName: product.displayName,
+        productType: product.type
+      });
+      addToCart(product);
+    } catch (err) {
+      logger.error('Error adding product to cart', err);
+    }
+  };
 
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold">Products</h2>
+        <h2 className="text-xl font-semibold">Produits</h2>
         <div className="flex space-x-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
             <input
               type="text"
-              placeholder="Search products..."
+              placeholder="Rechercher des produits..."
               className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -48,11 +86,11 @@ function Products() {
             <select
               className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={category}
-              onChange={(e) => setCategory(e.target.value as 'all' | 'phones' | 'accessories')}
+              onChange={(e) => setCategory(e.target.value as ProductType)}
             >
-              <option value="all">All Products</option>
-              <option value="phones">Phones</option>
-              <option value="accessories">Accessories</option>
+              <option value="all">Tous les produits</option>
+              <option value="phone">Téléphones</option>
+              <option value="accessory">Accessoires</option>
             </select>
           </div>
         </div>
@@ -79,16 +117,16 @@ function Products() {
                   <p className="text-sm text-gray-600">{product.details}</p>
                 </div>
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                  {product.type}
+                  {product.type === 'phone' ? 'téléphone' : 'accessoire'}
                 </span>
               </div>
               <div className="flex justify-between items-center mt-4">
                 <div>
                   <p className="text-lg font-bold text-gray-900">${product.price.toFixed(2)}</p>
-                  <p className="text-sm text-gray-600">{product.stock} in stock</p>
+                  <p className="text-sm text-gray-600">{product.stock} en stock</p>
                 </div>
                 <button
-                  onClick={() => addToCart(product)}
+                  onClick={() => handleAddToCart(product)}
                   disabled={product.stock === 0}
                   className={`px-4 py-2 rounded-lg text-white ${
                     product.stock > 0
@@ -96,7 +134,7 @@ function Products() {
                       : 'bg-gray-400 cursor-not-allowed'
                   } transition-colors`}
                 >
-                  Add to Cart
+                  Ajouter au panier
                 </button>
               </div>
             </div>
@@ -107,4 +145,19 @@ function Products() {
   );
 }
 
-export default Products;
+export default function Products() {
+  return (
+    <ErrorBoundary
+      fallback={
+        <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="text-red-600 text-center">
+            <h2 className="text-lg font-bold">Une erreur est survenue</h2>
+            <p>Impossible de charger la liste des produits</p>
+          </div>
+        </div>
+      }
+    >
+      <ProductsContent />
+    </ErrorBoundary>
+  );
+}

@@ -1,22 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
-import { LayoutGrid, ShoppingCart, Settings, BarChart3, PenTool as Tool, Package, History, DollarSign } from 'lucide-react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import SessionPage from './components/SessionPage';
+import InventoryPage from './components/InventoryPage';
+import ClientPage from './components/clients/ClientPage';
+import { SessionProvider } from './context/SessionContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
-import { SessionProvider } from './context/SessionContext';
 import Login from './components/Login';
 import Products from './components/Products';
 import Cart from './components/Cart';
 import Dashboard from './components/Dashboard';
 import Repairs from './components/Repairs';
-import Inventory from './components/Inventory';
 import Transactions from './components/Transactions';
-import SessionPage from './components/SessionPage';
-import InventoryPage from './components/InventoryPage';
 
-function PrivateRoute({ children }: { children: React.ReactNode }) {
+function PrivateRoute({ element }: { element: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
-  return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
+  return isAuthenticated ? <>{element}</> : <Navigate to="/login" />;
 }
 
 function Layout({ children }: { children: React.ReactNode }) {
@@ -24,14 +23,14 @@ function Layout({ children }: { children: React.ReactNode }) {
   const [activeTab, setActiveTab] = React.useState('dashboard');
 
   const navigation = [
-    { id: 'dashboard', name: 'Dashboard', icon: BarChart3 },
-    { id: 'session', name: 'Session', icon: DollarSign },
-    { id: 'products', name: 'Products', icon: LayoutGrid },
-    { id: 'cart', name: 'Cart', icon: ShoppingCart },
-    { id: 'repairs', name: 'Repairs', icon: Tool },
-    { id: 'inventory', name: 'Inventory', icon: Package },
-    { id: 'transactions', name: 'Transactions', icon: History },
-    { id: 'settings', name: 'Settings', icon: Settings },
+    { id: 'dashboard', name: 'Dashboard' },
+    { id: 'session', name: 'Session' },
+    { id: 'products', name: 'Products' },
+    { id: 'cart', name: 'Cart' },
+    { id: 'repairs', name: 'Repairs' },
+    { id: 'inventory', name: 'Inventory' },
+    { id: 'clients', name: 'Clients' },
+    { id: 'transactions', name: 'Transactions' },
   ];
 
   return (
@@ -61,7 +60,6 @@ function Layout({ children }: { children: React.ReactNode }) {
           <nav className="w-64 bg-white rounded-lg shadow-sm p-4 h-[calc(100vh-8rem)]">
             <ul className="space-y-2">
               {navigation.map((item) => {
-                const Icon = item.icon;
                 return (
                   <li key={item.id}>
                     <button
@@ -72,7 +70,6 @@ function Layout({ children }: { children: React.ReactNode }) {
                           : 'text-gray-600 hover:bg-gray-50'
                       }`}
                     >
-                      <Icon size={20} />
                       <span>{item.name}</span>
                     </button>
                   </li>
@@ -89,8 +86,8 @@ function Layout({ children }: { children: React.ReactNode }) {
             {activeTab === 'cart' && <Cart />}
             {activeTab === 'repairs' && <Repairs />}
             {activeTab === 'inventory' && <InventoryPage />}
+            {activeTab === 'clients' && <ClientPage />}
             {activeTab === 'transactions' && <Transactions />}
-            {activeTab === 'settings' && <div>Settings</div>}
           </div>
         </div>
       </main>
@@ -109,20 +106,21 @@ function App() {
               <Route
                 path="/*"
                 element={
-                  <PrivateRoute>
+                  <PrivateRoute element={
                     <Layout>
                       <Routes>
                         <Route path="/" element={<Dashboard />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/session" element={<SessionPage />} />
                         <Route path="/products" element={<Products />} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/repairs" element={<Repairs />} />
                         <Route path="/inventory" element={<InventoryPage />} />
+                        <Route path="/clients" element={<ClientPage />} />
                         <Route path="/transactions" element={<Transactions />} />
-                        <Route path="/settings" element={<div>Settings</div>} />
                       </Routes>
                     </Layout>
-                  </PrivateRoute>
+                  } />
                 }
               />
             </Routes>

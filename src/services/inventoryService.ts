@@ -41,6 +41,10 @@ class InventoryService {
 
   private constructor() {
     this.loadFromStorage();
+    // Si aucun produit n'est chargé, initialiser avec les données de store.json
+    if (this.products.length === 0) {
+      this.initializeFromStoreData();
+    }
   }
 
   public static getInstance(): InventoryService {
@@ -276,6 +280,48 @@ class InventoryService {
     });
 
     return lines.join('\n');
+  }
+
+  private async initializeFromStoreData(): Promise<void> {
+    try {
+      // Charger le fichier store.json directement comme module
+      const storeData = await import('../data/store.json');
+      const data = storeData.default || storeData;
+      
+      // Convertir les téléphones au format de notre application
+      const phones: Product[] = data.phones.map((phone: any) => ({
+        id: phone.id,
+        type: 'phone',
+        brand: phone.brand,
+        model: phone.model,
+        storage: phone.storage,
+        color: phone.color,
+        price: phone.price,
+        stock: phone.stock,
+        minStock: 5, // Valeur par défaut
+        lastUpdated: phone.added_date
+      }));
+      
+      // Convertir les accessoires au format de notre application
+      const accessories: Product[] = data.accessories.map((accessory: any) => ({
+        id: accessory.id,
+        type: 'accessory',
+        name: accessory.name,
+        brand: accessory.brand,
+        price: accessory.price,
+        stock: accessory.stock,
+        minStock: 10, // Valeur par défaut
+        compatible_with: accessory.compatible_with,
+        lastUpdated: accessory.added_date
+      }));
+      
+      // Combiner les produits et les sauvegarder
+      this.products = [...phones, ...accessories];
+      this.saveToStorage();
+      console.log('Produits initialisés depuis store.json:', this.products.length);
+    } catch (error) {
+      console.error('Erreur lors du chargement des données de store.json:', error);
+    }
   }
 }
 

@@ -17,7 +17,7 @@ interface LoggingConfig {
 
 const config: LoggingConfig = {
   errorReporting: {
-    endpoint: process.env.REACT_APP_ERROR_REPORTING_ENDPOINT || 'https://api.pos-app.com/errors',
+    endpoint: import.meta.env.VITE_ERROR_REPORTING_ENDPOINT || 'https://api.pos-app.com/errors',
     batchSize: 50, // Nombre d'erreurs à envoyer par lot
     retryAttempts: 3, // Nombre de tentatives en cas d'échec
     retryDelay: 1000, // Délai entre les tentatives (ms)

@@ -15,14 +15,78 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
 - [ ] Implémentation des pages principales
 - [ ] Intégration avec l'API
 
-## Fonctionnalités
-- [x] Système d'authentification (composant Login)
-- [ ] Gestion des utilisateurs
-- [x] Gestion des téléphones
-- [x] Gestion des accessoires
-- [ ] Gestion des réparations
-- [ ] Système de transactions
-- [x] Tableau de bord et statistiques
+## Fonctionnalités Principales
+
+### 1. Système de Paiement 
+- [x] Interface de paiement
+  - [x] Support multi-méthodes (espèces, carte, virement)
+  - [x] Calcul de monnaie automatique
+  - [x] Validation des paiements
+- [x] Service de transactions
+  - [x] Enregistrement local
+  - [x] Historique des transactions
+  - [x] Rapports journaliers
+  - [x] Mise à jour du stock
+
+### 2. Gestion des Stocks 
+- [x] Service d'inventaire
+  - [x] CRUD des produits
+  - [x] Suivi des mouvements
+  - [x] Alertes de stock bas
+  - [x] Import/Export CSV
+- [x] Interface d'inventaire
+  - [x] Liste des produits
+  - [x] Filtres et recherche
+  - [x] Formulaire d'édition
+  - [x] Historique des mouvements
+
+### 3. Gestion des Clients 
+- [x] Base de données clients
+- [x] Historique des achats
+- [x] Interface de gestion des clients
+  - [x] Liste des clients
+  - [x] Fiche client détaillée
+  - [x] Formulaire d'ajout/édition
+  - [x] Recherche et filtres
+- [x] Export des données clients
+- [ ] Programme de fidélité
+- [ ] Gestion des crédits
+
+### 4. Réparations 
+- [ ] Suivi des réparations
+- [ ] Devis et factures
+- [ ] États des réparations
+- [ ] Notifications client
+
+### 5. Rapports et Analyses 
+- [ ] Tableaux de bord
+- [ ] Statistiques de vente
+- [ ] Analyses des tendances
+- [ ] Export des données
+
+## Prochaines Étapes
+1. [x] Système de paiement
+   - [x] Interface de paiement
+   - [x] Gestion des transactions
+   - [x] Notifications de succès
+2. [x] Gestion des stocks
+   - [x] Service d'inventaire
+   - [x] Interface utilisateur
+   - [x] Mouvements de stock
+3. [x] Gestion des clients
+   - [x] Service client
+   - [x] Interface de gestion
+   - [x] Historique des achats
+   - [ ] Programme de fidélité
+4. [ ] Module de réparations
+5. [ ] Rapports et analyses
+
+## Notes Techniques
+- Interface utilisateur en Vue.js avec Tailwind CSS
+- Stockage local avec localStorage
+- Architecture modulaire avec services
+- Support multilingue (FR)
+- Gestion des erreurs robuste
 
 ## Tests
 - [ ] Tests unitaires
