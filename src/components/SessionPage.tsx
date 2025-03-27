@@ -4,6 +4,8 @@ import { logger } from '../utils/logger';
 import ErrorBoundary from './ErrorBoundary';
 import PaymentModal from './PaymentModal';
 import { transactionService } from '../services/transactionService';
+import { userService } from '../services/userService';
+import { customerService } from '../services/customerService';
 import type { PaymentDetails } from './PaymentModal';
 
 const ProductCard: React.FC<{ 
@@ -39,49 +41,48 @@ const ProductCard: React.FC<{
   );
 };
 
-function SessionContent() {
-  const {
-    customer,
-    cart,
-    tax,
-    discount,
-    shipping,
-    searchTerm,
-    filteredProducts,
-    setCustomer,
-    addToCart,
-    updateQuantity,
-    removeFromCart,
-    setTax,
-    setDiscount,
-    setShipping,
-    setSearchTerm,
+const SessionContent: React.FC = () => {
+  const { 
+    customer: customerName, 
+    cart, 
+    tax, 
+    discount, 
+    shipping, 
+    searchTerm, 
+    filteredProducts, 
+    subtotal, 
+    total, 
+    setCustomer: setCustomerName, 
+    addToCart, 
+    removeFromCart, 
+    updateQuantity, 
+    setTax, 
+    setDiscount, 
+    setShipping, 
     resetSession,
-    total,
-    subtotal
+    setSearchTerm 
   } = useSession();
 
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [lastTransaction, setLastTransaction] = useState<string | null>(null);
+  const [customers] = useState(customerService.getCustomers());
+  const [selectedCustomerId, setSelectedCustomerId] = useState(customerService.getOrCreateGuestCustomer().id);
+  const [showExportOptions, setShowExportOptions] = useState(false);
 
   useEffect(() => {
     logger.info('Session page mounted', {
-      customer,
+      customer: customerName,
       cartSize: cart.length,
       cartTotal: total,
       productsCount: filteredProducts.length
     });
   }, []);
 
-  const handleCustomerChange = (newCustomer: string) => {
-    try {
-      logger.info('Customer changed', {
-        previousCustomer: customer,
-        newCustomer
-      });
-      setCustomer(newCustomer);
-    } catch (err) {
-      logger.error('Error changing customer', err);
+  const handleCustomerChange = (customerId: string) => {
+    const selectedCustomer = customerService.getCustomerById(customerId);
+    if (selectedCustomer) {
+      setSelectedCustomerId(customerId);
+      setCustomerName(selectedCustomer.name);
     }
   };
 
@@ -141,7 +142,7 @@ function SessionContent() {
 
   const handleResetSession = () => {
     try {
-      logger.info('Session reset requested', {
+      logger.info('Session reset', {
         cartSize: cart.length,
         cartTotal: total
       });
@@ -153,8 +154,22 @@ function SessionContent() {
 
   const handlePayment = (paymentDetails: PaymentDetails) => {
     try {
+      // Obtenir l'utilisateur actuel (caissier)
+      const currentUser = userService.getCurrentUser();
+      if (!currentUser) {
+        throw new Error('Aucun caissier connecté');
+      }
+
+      // Obtenir le client sélectionné
+      const selectedCustomer = customerService.getCustomerById(selectedCustomerId);
+      if (!selectedCustomer) {
+        throw new Error('Client non trouvé');
+      }
+
       const transaction = transactionService.createTransaction({
-        customer,
+        customer: selectedCustomer.name,
+        customerId: selectedCustomerId,
+        cashier: currentUser.name,
         items: cart,
         subtotal,
         tax,
@@ -173,10 +188,27 @@ function SessionContent() {
       logger.info('Transaction completed', {
         transactionId: transaction.id,
         total: transaction.total,
-        paymentMethod: paymentDetails.method
+        paymentMethod: paymentDetails.method,
+        cashier: currentUser.name,
+        customer: selectedCustomer.name
       });
     } catch (err) {
       logger.error('Error processing payment', err);
+      alert(`Erreur lors du traitement du paiement: ${err instanceof Error ? err.message : 'Erreur inconnue'}`);
+    }
+  };
+
+  const handleExportTransactions = (format: 'json' | 'csv') => {
+    try {
+      if (format === 'json') {
+        transactionService.downloadTransactionsAsJSON();
+      } else {
+        transactionService.downloadTransactionsAsCSV();
+      }
+      setShowExportOptions(false);
+    } catch (err) {
+      logger.error('Error exporting transactions', err);
+      alert(`Erreur lors de l'exportation des transactions: ${err instanceof Error ? err.message : 'Erreur inconnue'}`);
     }
   };
 
@@ -206,13 +238,41 @@ function SessionContent() {
           <div className="w-64">
             <select 
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 text-sm py-1"
-              value={customer}
+              value={selectedCustomerId}
               onChange={(e) => handleCustomerChange(e.target.value)}
               aria-label="Sélectionner un client"
             >
-              <option value="Passager">Client Passager</option>
-              {/* Autres clients peuvent être ajoutés ici */}
+              {customers.map(cust => (
+                <option key={cust.id} value={cust.id}>{cust.name}</option>
+              ))}
             </select>
+          </div>
+          <div className="relative ml-auto">
+            <button 
+              onClick={() => setShowExportOptions(!showExportOptions)}
+              className="bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm"
+              aria-label="Exporter les transactions"
+            >
+              📊 Exporter Transactions
+            </button>
+            {showExportOptions && (
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+                <div className="py-1">
+                  <button
+                    onClick={() => handleExportTransactions('json')}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Exporter en JSON
+                  </button>
+                  <button
+                    onClick={() => handleExportTransactions('csv')}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Exporter en CSV
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

@@ -14,6 +14,8 @@ export interface Transaction {
   id: string;
   date: string;
   customer: string;
+  customerId: string; 
+  cashier: string; 
   items: CartItem[];
   subtotal: number;
   tax: number;
@@ -49,6 +51,11 @@ class TransactionService {
   }
 
   public createTransaction(data: Omit<Transaction, 'id' | 'date'>): Transaction {
+    // Vérifier que le client et le caissier sont spécifiés
+    if (!data.customer || !data.customerId || !data.cashier) {
+      throw new Error('Le client et le caissier sont obligatoires pour créer une transaction');
+    }
+
     const transaction: Transaction = {
       ...data,
       id: `TR-${Date.now()}`,
@@ -129,6 +136,69 @@ class TransactionService {
       averageTicket: dayTransactions.length ? totalSales / dayTransactions.length : 0,
       paymentMethods,
     };
+  }
+
+  public exportTransactionsToJSON(): string {
+    return JSON.stringify(this.transactions, null, 2);
+  }
+
+  public exportTransactionsToCSV(): string {
+    if (this.transactions.length === 0) {
+      return 'Aucune transaction à exporter';
+    }
+
+    // Créer les en-têtes
+    const headers = [
+      'ID', 'Date', 'Client', 'ID Client', 'Caissier', 'Sous-total', 
+      'TVA (%)', 'Montant TVA', 'Remise (%)', 'Montant Remise', 
+      'Livraison', 'Total', 'Méthode de paiement'
+    ];
+
+    // Créer les lignes
+    const rows = this.transactions.map(t => [
+      t.id,
+      new Date(t.date).toLocaleString('fr-FR'),
+      t.customer,
+      t.customerId,
+      t.cashier,
+      t.subtotal.toFixed(2),
+      t.tax.toFixed(2),
+      t.taxAmount.toFixed(2),
+      t.discount.toFixed(2),
+      t.discountAmount.toFixed(2),
+      t.shipping.toFixed(2),
+      t.total.toFixed(2),
+      t.payment.method === 'cash' ? 'Espèces' : t.payment.method
+    ]);
+
+    // Combiner en-têtes et lignes
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    return csvContent;
+  }
+
+  public downloadTransactionsAsJSON(): void {
+    const jsonContent = this.exportTransactionsToJSON();
+    this.downloadFile(jsonContent, 'transactions.json', 'application/json');
+  }
+
+  public downloadTransactionsAsCSV(): void {
+    const csvContent = this.exportTransactionsToCSV();
+    this.downloadFile(csvContent, 'transactions.csv', 'text/csv');
+  }
+
+  private downloadFile(content: string, filename: string, contentType: string): void {
+    const blob = new Blob([content], { type: `${contentType};charset=utf-8;` });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 }
 

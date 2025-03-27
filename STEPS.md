@@ -19,14 +19,17 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
 
 ### 1. Système de Paiement 
 - [x] Interface de paiement
-  - [x] Support multi-méthodes (espèces, carte, virement)
+  - [x] Paiement en espèces uniquement
   - [x] Calcul de monnaie automatique
   - [x] Validation des paiements
+  - [x] Arrondi supérieur automatique du montant
 - [x] Service de transactions
   - [x] Enregistrement local
   - [x] Historique des transactions
   - [x] Rapports journaliers
   - [x] Mise à jour du stock
+  - [x] Export des transactions (JSON/CSV)
+  - [x] Association obligatoire avec caissier et client
 
 ### 2. Gestion des Stocks 
 - [x] Service d'inventaire
@@ -68,10 +71,12 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
 - [x] Notifications client
 
 ### 5. Rapports et Analyses 
+- [x] Export des données
+  - [x] Export JSON des transactions
+  - [x] Export CSV des transactions
 - [ ] Tableaux de bord
 - [ ] Statistiques de vente
 - [ ] Analyses des tendances
-- [ ] Export des données
 
 ## Prochaines Étapes
 1. [x] Système de paiement
@@ -99,7 +104,8 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
 - Stockage local avec localStorage
 - Architecture modulaire avec services
 - Support multilingue (FR)
-- Gestion des erreurs robuste
+- Système de paiement simplifié (espèces uniquement)
+- Export des données au format JSON et CSV
 
 ## Tests
 - [ ] Tests unitaires
