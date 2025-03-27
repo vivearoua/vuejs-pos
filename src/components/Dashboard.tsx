@@ -1,12 +1,30 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import storeData from '../data/store.json';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { DollarSign, Package, PenTool as Tool, ShoppingBag } from 'lucide-react';
+import { logger } from '../utils/logger';
+import ErrorBoundary from './ErrorBoundary';
 
-function Dashboard() {
+function DashboardContent() {
   const { user } = useAuth();
   const stats = storeData.stats;
+
+  useEffect(() => {
+    logger.info('Dashboard mounted', { userId: user?.id });
+    try {
+      logger.info('Loading dashboard stats', {
+        totalSales: stats.total_sales.amount,
+        totalRepairs: stats.total_repairs.amount,
+        inventory: {
+          phones: stats.inventory.phones_in_stock,
+          accessories: stats.inventory.accessories_in_stock
+        }
+      });
+    } catch (err) {
+      logger.error('Error loading dashboard stats', err);
+    }
+  }, [user, stats]);
 
   const salesData = [
     { name: 'Total Sales', value: stats.total_sales.amount },
@@ -130,4 +148,19 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default function Dashboard() {
+  return (
+    <ErrorBoundary
+      fallback={
+        <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="text-red-600 text-center">
+            <h2 className="text-lg font-bold">Une erreur est survenue</h2>
+            <p>Impossible de charger le tableau de bord</p>
+          </div>
+        </div>
+      }
+    >
+      <DashboardContent />
+    </ErrorBoundary>
+  );
+}

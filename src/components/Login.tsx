@@ -1,24 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Smartphone, Lock } from 'lucide-react';
+import { logger } from '../utils/logger';
+import ErrorBoundary from './ErrorBoundary';
 
-function Login() {
+function LoginComponent() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    logger.info('Login page mounted');
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
-    const success = await login(username, password);
-    if (success) {
-      navigate('/dashboard');
-    } else {
-      setError('Invalid username or password');
+    
+    try {
+      logger.info('Login attempt', { username });
+      const success = await login(username, password);
+      if (success) {
+        logger.info('Login successful', { username });
+        navigate('/dashboard');
+      } else {
+        logger.warn('Login failed', { username });
+        setError('Nom d\'utilisateur ou mot de passe invalide');
+      }
+    } catch (err) {
+      logger.error('Login error', err);
+      setError('Une erreur est survenue lors de la connexion');
     }
   };
 
@@ -113,4 +127,19 @@ function Login() {
   );
 }
 
-export default Login;
+export default function Login() {
+  return (
+    <ErrorBoundary
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center">
+          <div className="text-red-600 text-center">
+            <h2 className="text-lg font-bold">Une erreur est survenue</h2>
+            <p>Veuillez rafraîchir la page</p>
+          </div>
+        </div>
+      }
+    >
+      <LoginComponent />
+    </ErrorBoundary>
+  );
+}
