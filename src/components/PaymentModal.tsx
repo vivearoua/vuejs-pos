@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface PaymentModalProps {
   isOpen: boolean;
@@ -14,7 +14,14 @@ export interface PaymentDetails {
 }
 
 const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onConfirm, total }) => {
-  const [amount, setAmount] = useState<string>(total.toFixed(2));
+  // Calculer l'arrondi supérieur du total
+  const roundedTotal = Math.ceil(total);
+  const [amount, setAmount] = useState<string>(roundedTotal.toFixed(2));
+
+  // Mettre à jour le montant si le total change
+  useEffect(() => {
+    setAmount(Math.ceil(total).toFixed(2));
+  }, [total]);
 
   if (!isOpen) return null;
 
