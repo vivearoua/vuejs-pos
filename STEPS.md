@@ -53,10 +53,19 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
 - [ ] Gestion des crédits
 
 ### 4. Réparations 
-- [ ] Suivi des réparations
-- [ ] Devis et factures
-- [ ] États des réparations
-- [ ] Notifications client
+- [x] Suivi des réparations
+  - [x] Création et modification des réparations
+  - [x] Gestion des statuts
+  - [x] Historique des interventions
+- [x] Devis et factures
+  - [x] Calcul des coûts (pièces et main d'œuvre)
+  - [x] Gestion des pièces détachées
+- [x] États des réparations
+  - [x] Tableau de bord avec statistiques
+  - [x] Filtrage par statut
+- [x] Export des données
+  - [x] Export CSV des réparations
+- [x] Notifications client
 
 ### 5. Rapports et Analyses 
 - [ ] Tableaux de bord
@@ -78,7 +87,11 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
    - [x] Interface de gestion
    - [x] Historique des achats
    - [ ] Programme de fidélité
-4. [ ] Module de réparations
+4. [x] Module de réparations
+   - [x] Suivi des réparations
+   - [x] Devis et factures
+   - [x] États des réparations
+   - [x] Notifications
 5. [ ] Rapports et analyses
 
 ## Notes Techniques

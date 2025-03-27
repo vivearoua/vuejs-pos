@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import SessionPage from './components/SessionPage';
 import InventoryPage from './components/InventoryPage';
 import ClientPage from './components/clients/ClientPage';
+import RepairPage from './components/repairs/RepairPage';
 import { SessionProvider } from './context/SessionContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
@@ -10,7 +11,6 @@ import Login from './components/Login';
 import Products from './components/Products';
 import Cart from './components/Cart';
 import Dashboard from './components/Dashboard';
-import Repairs from './components/Repairs';
 import Transactions from './components/Transactions';
 
 function PrivateRoute({ element }: { element: React.ReactNode }) {
@@ -84,7 +84,7 @@ function Layout({ children }: { children: React.ReactNode }) {
             {activeTab === 'session' && <SessionPage />}
             {activeTab === 'products' && <Products />}
             {activeTab === 'cart' && <Cart />}
-            {activeTab === 'repairs' && <Repairs />}
+            {activeTab === 'repairs' && <RepairPage />}
             {activeTab === 'inventory' && <InventoryPage />}
             {activeTab === 'clients' && <ClientPage />}
             {activeTab === 'transactions' && <Transactions />}
@@ -114,7 +114,7 @@ function App() {
                         <Route path="/session" element={<SessionPage />} />
                         <Route path="/products" element={<Products />} />
                         <Route path="/cart" element={<Cart />} />
-                        <Route path="/repairs" element={<Repairs />} />
+                        <Route path="/repairs" element={<RepairPage />} />
                         <Route path="/inventory" element={<InventoryPage />} />
                         <Route path="/clients" element={<ClientPage />} />
                         <Route path="/transactions" element={<Transactions />} />
