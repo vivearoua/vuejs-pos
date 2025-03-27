@@ -172,11 +172,11 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
    - [x] Filtrage par niveau
    - [x] Recherche dans les logs
    - [x] Actualisation automatique
-4. [ ] Configurer le reporting automatique en production
-   - [ ] Configuration de l'endpoint de production
-   - [ ] Mise en place de la rotation des logs
-   - [ ] Ajout de la gestion des erreurs réseau
-   - [ ] Configuration de la rétention des logs
+4. [x] Configurer le reporting automatique en production
+   - [x] Configuration de l'endpoint de production
+   - [x] Mise en place de la rotation des logs
+   - [x] Ajout de la gestion des erreurs réseau
+   - [x] Configuration de la rétention des logs
 
 ## Points d'Amélioration du Système de Logging
 - [x] Service de reporting d'erreurs
@@ -184,12 +184,19 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
   - [x] Support du mode développement/production
   - [x] Envoi des erreurs au backend
   - [x] Capture des informations contextuelles
+  - [x] File d'attente et tentatives de renvoi
+  - [x] Échantillonnage des erreurs
 - [x] Visualiseur de logs
   - [x] Interface utilisateur intuitive
   - [x] Filtrage par niveau de log
   - [x] Recherche dans les messages et données
   - [x] Actualisation automatique
   - [x] Formatage des dates en français
+- [x] Gestion des logs en production
+  - [x] Configuration flexible
+  - [x] Rotation automatique des logs
+  - [x] Rétention configurable
+  - [x] Échantillonnage des logs non-critiques
 - [ ] Améliorations futures
   - [ ] Export des logs
   - [ ] Agrégation des erreurs similaires
@@ -198,6 +205,18 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
 
 ## Prochaines Étapes
 1. [ ] Configuration du backend pour le reporting d'erreurs
+   - [ ] API de réception des erreurs
+   - [ ] Stockage dans une base de données
+   - [ ] Interface d'administration
 2. [ ] Tests de performance du système de logging
+   - [ ] Tests de charge
+   - [ ] Tests de fiabilité
+   - [ ] Tests de reprise après panne
 3. [ ] Documentation du système de reporting
+   - [ ] Guide d'utilisation
+   - [ ] Documentation technique
+   - [ ] Exemples d'intégration
 4. [ ] Formation de l'équipe sur l'utilisation des outils
+   - [ ] Sessions de formation
+   - [ ] Documentation utilisateur
+   - [ ] Bonnes pratiques
