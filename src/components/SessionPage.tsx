@@ -65,16 +65,26 @@ const SessionContent: React.FC = () => {
 
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [lastTransaction, setLastTransaction] = useState<string | null>(null);
-  const [customers] = useState(customerService.getCustomers());
+  const [customers, setCustomers] = useState(customerService.getCustomers());
   const [selectedCustomerId, setSelectedCustomerId] = useState(customerService.getOrCreateGuestCustomer().id);
   const [showExportOptions, setShowExportOptions] = useState(false);
 
   useEffect(() => {
+    // Charger les clients depuis le service
+    const loadedCustomers = customerService.getCustomers();
+    setCustomers(loadedCustomers);
+    
+    // Sélectionner le client passager par défaut
+    const guestCustomer = customerService.getOrCreateGuestCustomer();
+    setSelectedCustomerId(guestCustomer.id);
+    setCustomerName(guestCustomer.name);
+    
     logger.info('Session page mounted', {
       customer: customerName,
       cartSize: cart.length,
       cartTotal: total,
-      productsCount: filteredProducts.length
+      productsCount: filteredProducts.length,
+      customersLoaded: loadedCustomers.length
     });
   }, []);
 

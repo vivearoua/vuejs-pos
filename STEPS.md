@@ -30,6 +30,10 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
   - [x] Mise à jour du stock
   - [x] Export des transactions (JSON/CSV)
   - [x] Association obligatoire avec caissier et client
+  - [x] API REST pour l'ajout de transactions
+    - [x] Endpoint POST /api/newtransaction
+    - [x] Validation des données
+    - [x] Sauvegarde dans store.json
 
 ### 2. Gestion des Stocks 
 - [x] Service d'inventaire
