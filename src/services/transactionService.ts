@@ -1,5 +1,6 @@
 import { PaymentDetails } from '../components/PaymentModal';
 import { inventoryService } from './inventoryService';
+import { fileService } from './fileService';
 
 export interface CartItem {
   id: string;
@@ -32,10 +33,13 @@ class TransactionService {
   private transactions: Transaction[] = [];
 
   private constructor() {
-    // Charger les transactions depuis le localStorage
-    const savedTransactions = localStorage.getItem('transactions');
-    if (savedTransactions) {
-      this.transactions = JSON.parse(savedTransactions);
+    // Charger les transactions depuis le fichier JSON
+    try {
+      const rawData = require('../data/transactions.json');
+      this.transactions = Array.isArray(rawData) ? rawData : [];
+    } catch (error) {
+      console.error('Erreur lors du chargement des transactions:', error);
+      this.transactions = [];
     }
   }
 
@@ -47,7 +51,17 @@ class TransactionService {
   }
 
   private saveToStorage(): void {
-    localStorage.setItem('transactions', JSON.stringify(this.transactions));
+    try {
+      // Sauvegarder dans localStorage comme backup
+      localStorage.setItem('transactions', JSON.stringify(this.transactions));
+      
+      // Sauvegarder dans le fichier JSON via le fileService
+      fileService.saveTransactions(this.transactions);
+      
+      console.log('Transactions sauvegardées:', this.transactions.length);
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde des transactions:', error);
+    }
   }
 
   public createTransaction(data: Omit<Transaction, 'id' | 'date'>): Transaction {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import SessionPage from './components/SessionPage';
 import InventoryPage from './components/InventoryPage';
@@ -12,6 +12,7 @@ import Products from './components/Products';
 import Cart from './components/Cart';
 import Dashboard from './components/Dashboard';
 import Transactions from './components/Transactions';
+import { fileService } from './services/fileService';
 
 function PrivateRoute({ element }: { element: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
@@ -96,6 +97,14 @@ function Layout({ children }: { children: React.ReactNode }) {
 }
 
 function App() {
+  useEffect(() => {
+    // Configurer la sauvegarde automatique des transactions
+    fileService.setupAutoSave();
+    
+    // Afficher un message de bienvenue
+    console.log('Application POS démarrée');
+  }, []);
+
   return (
     <Router>
       <AuthProvider>
