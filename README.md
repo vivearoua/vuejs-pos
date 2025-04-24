@@ -38,7 +38,7 @@ git clone https://github.com/vivearoua/vuejs-pos.git
 npm install
 
 # Lancer le serveur de développement
-npm run dev
+npm run dev:all
 ```
 
 ## Contribution

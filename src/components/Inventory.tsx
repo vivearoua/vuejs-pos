@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import storeData from '../data/store.json';
 import { Search, Package, Smartphone } from 'lucide-react';
 import { logger } from '../utils/logger';
 import ErrorBoundary from './ErrorBoundary';
+import { inventoryService } from '../services/inventoryService';
 
 type ProductType = 'all' | 'phone' | 'accessory';
 
@@ -10,29 +10,57 @@ function InventoryContent() {
   const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState<ProductType>('all');
 
-  const phones = storeData.phones;
-  const accessories = storeData.accessories;
+  const [products, setProducts] = useState<any[]>([]);
+  
+  // Charger les produits depuis le service d'inventaire
+  useEffect(() => {
+    const loadProducts = () => {
+      const allProducts = inventoryService.getAllProducts();
+      setProducts(allProducts);
+    };
+    
+    loadProducts();
+    
+    // S'abonner aux mises à jour du stock
+    const unsubscribe = inventoryService.subscribe((type, _data) => {
+      if (['product_updated', 'stock_decreased'].includes(type)) {
+        // Recharger les produits lorsque le stock est mis à jour
+        loadProducts();
+      }
+    });
+    
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
-    logger.info('Inventory page mounted', {
-      totalPhones: phones.length,
-      totalAccessories: accessories.length,
-      totalItems: phones.length + accessories.length,
-      lowStockItems: [...phones, ...accessories].filter(item => item.stock < 10).length
-    });
-  }, [phones.length, accessories.length]);
+    if (products.length > 0) {
+      const phones = products.filter(p => p.type === 'phone');
+      const accessories = products.filter(p => p.type === 'accessory');
+      
+      logger.info('Inventory page mounted', {
+        totalPhones: phones.length,
+        totalAccessories: accessories.length,
+        totalItems: products.length,
+        lowStockItems: products.filter(item => item.stock < 10).length
+      });
+    }
+  }, [products]);
 
-  const filteredItems = [...phones.map(phone => ({
-    ...phone,
-    type: 'phone' as const,
-    displayName: `${phone.brand} ${phone.model}`,
-    details: `${phone.storage} - ${phone.color}`
-  })), ...accessories.map(acc => ({
-    ...acc,
-    type: 'accessory' as const,
-    displayName: acc.name,
-    details: acc.brand
-  }))].filter(item => {
+  const filteredItems = products.map(item => {
+    if (item.type === 'phone') {
+      return {
+        ...item,
+        displayName: `${item.brand} ${item.model}`,
+        details: `${item.storage} - ${item.color}`
+      };
+    } else {
+      return {
+        ...item,
+        displayName: item.name,
+        details: item.brand
+      };
+    }
+  }).filter(item => {
     const matchesSearch = item.displayName.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = category === 'all' || category === item.type;
     return matchesSearch && matchesCategory;
@@ -44,10 +72,10 @@ function InventoryContent() {
         searchTerm,
         category,
         resultsCount: filteredItems.length,
-        totalItems: phones.length + accessories.length
+        totalItems: products.length
       });
     }
-  }, [searchTerm, category, filteredItems.length, phones.length, accessories.length]);
+  }, [searchTerm, category, filteredItems.length, products.length]);
 
   const getStockStatus = (stock: number) => {
     if (stock === 0) return { color: 'text-red-600', bg: 'bg-red-100', text: 'Rupture de stock' };

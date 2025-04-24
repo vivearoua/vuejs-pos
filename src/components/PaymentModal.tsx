@@ -23,18 +23,26 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onConfirm,
     setAmount(Math.ceil(total).toFixed(2));
   }, [total]);
 
+  const [error, setError] = useState<string>('');
+
   if (!isOpen) return null;
+
+  const minAllowed = total * 0.7;
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const numericAmount = parseFloat(amount);
-    
+    if (numericAmount < minAllowed) {
+      setError(`Le montant doit être au moins égal à 70% du total (${minAllowed.toFixed(2)} €)`);
+      return;
+    }
+    setError('');
     const paymentDetails: PaymentDetails = {
       method: 'cash',
       amount: numericAmount,
       ...(numericAmount > total ? { change: numericAmount - total } : {})
     };
-
     onConfirm(paymentDetails);
   };
 
@@ -50,7 +58,6 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onConfirm,
             <div className="relative">
               <input
                 type="number"
-                min={total}
                 step="0.01"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
@@ -58,6 +65,9 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onConfirm,
               />
               <span className="absolute right-3 top-2 text-gray-500">€</span>
             </div>
+            {error && (
+              <div className="text-red-500 text-sm mt-1">{error}</div>
+            )}
           </div>
 
           {parseFloat(amount) > total && (
@@ -81,9 +91,10 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onConfirm,
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-purple-600 text-white rounded-md text-sm font-medium hover:bg-purple-700"
+              className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
+              disabled={parseFloat(amount) < minAllowed}
             >
-              Confirmer
+              Valider
             </button>
           </div>
         </form>

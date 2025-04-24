@@ -8,7 +8,7 @@ import StockAlerts from './inventory/StockAlerts';
 export default function InventoryPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [stockStatus, setStockStatus] = useState({
     totalProducts: 0,
@@ -54,7 +54,7 @@ export default function InventoryPage() {
 
   const handleProductSelect = (product: Product) => {
     setSelectedProduct(product);
-    setIsFormOpen(true);
+    setIsEditing(true);
   };
 
   const handleProductSave = (product: Omit<Product, 'id' | 'lastUpdated'>) => {
@@ -63,7 +63,7 @@ export default function InventoryPage() {
     } else {
       inventoryService.addProduct(product);
     }
-    setIsFormOpen(false);
+    setIsEditing(false);
     setSelectedProduct(null);
   };
 
@@ -99,6 +99,16 @@ export default function InventoryPage() {
     URL.revokeObjectURL(url);
   };
 
+  const handleNewProduct = () => {
+    setSelectedProduct(null);
+    setIsEditing(true);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setSelectedProduct(null);
+  };
+
   return (
     <div className="p-4">
       {/* En-tête avec statistiques */}
@@ -125,7 +135,7 @@ export default function InventoryPage() {
       <div className="flex justify-between items-center mb-6">
         <div className="flex gap-4">
           <button
-            onClick={() => setIsFormOpen(true)}
+            onClick={handleNewProduct}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
           >
             ➕ Nouveau Produit
@@ -163,9 +173,20 @@ export default function InventoryPage() {
         </div>
       </div>
 
+      {/* Formulaire d'édition intégré (non popup) */}
+      {isEditing && (
+        <div className="bg-white p-6 rounded-lg shadow mb-6">
+          <ProductForm
+            product={selectedProduct}
+            onSave={handleProductSave}
+            onCancel={handleCancelEdit}
+          />
+        </div>
+      )}
+
       <div className="grid grid-cols-3 gap-6">
         {/* Liste des produits */}
-        <div className="col-span-2">
+        <div className={isEditing ? "col-span-2" : "col-span-2"}>
           <ProductList
             products={products}
             onSelect={handleProductSelect}
@@ -179,27 +200,11 @@ export default function InventoryPage() {
             lowStock={stockStatus.lowStock}
             outOfStock={stockStatus.outOfStock}
           />
-          {selectedProduct && (
+          {selectedProduct && !isEditing && (
             <StockMovements productId={selectedProduct.id} />
           )}
         </div>
       </div>
-
-      {/* Modal du formulaire */}
-      {isFormOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg w-full max-w-2xl">
-            <ProductForm
-              product={selectedProduct}
-              onSave={handleProductSave}
-              onCancel={() => {
-                setIsFormOpen(false);
-                setSelectedProduct(null);
-              }}
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 }

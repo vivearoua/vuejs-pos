@@ -1,30 +1,100 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import storeData from '../data/store.json';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { DollarSign, Package, PenTool as Tool, ShoppingBag } from 'lucide-react';
 import { logger } from '../utils/logger';
 import ErrorBoundary from './ErrorBoundary';
+import { inventoryService } from '../services/inventoryService';
 
 function DashboardContent() {
   const { user } = useAuth();
-  const stats = storeData.stats;
+  
+  // État pour stocker les statistiques du tableau de bord
+  const [stats, setStats] = useState({
+    total_sales: { amount: 0 },
+    total_repairs: { amount: 0 },
+    inventory: {
+      phones_in_stock: 0,
+      accessories_in_stock: 0
+    }
+  });
+  
+  // État pour stocker les transactions récentes
+  const [recentTransactions, setRecentTransactions] = useState<any[]>([]);
 
   useEffect(() => {
     logger.info('Dashboard mounted', { userId: user?.id });
-    try {
-      logger.info('Loading dashboard stats', {
-        totalSales: stats.total_sales.amount,
-        totalRepairs: stats.total_repairs.amount,
-        inventory: {
-          phones: stats.inventory.phones_in_stock,
-          accessories: stats.inventory.accessories_in_stock
+    
+    // Charger les statistiques du tableau de bord
+    const loadDashboardData = async () => {
+      try {
+        // Récupérer les produits depuis le service d'inventaire
+        const products = inventoryService.getAllProducts();
+        
+        // Calculer les statistiques d'inventaire
+        const phones = products.filter(p => p.type === 'phone');
+        const accessories = products.filter(p => p.type === 'accessory');
+        const phones_in_stock = phones.reduce((sum, p) => sum + p.stock, 0);
+        const accessories_in_stock = accessories.reduce((sum, p) => sum + p.stock, 0);
+        
+        // Récupérer les transactions depuis l'API
+        try {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/transactions`);
+          if (response.ok) {
+            const transactions = await response.json();
+            
+            // Calculer les statistiques de ventes et réparations
+            const sales = transactions.filter((t: any) => t.type === 'sale');
+            const repairs = transactions.filter((t: any) => t.type === 'repair');
+            const total_sales_amount = sales.reduce((sum: number, t: any) => sum + t.total_amount, 0);
+            const total_repairs_amount = repairs.reduce((sum: number, t: any) => sum + t.total_amount, 0);
+            
+            // Mettre à jour les statistiques
+            setStats({
+              total_sales: { amount: total_sales_amount },
+              total_repairs: { amount: total_repairs_amount },
+              inventory: {
+                phones_in_stock,
+                accessories_in_stock
+              }
+            });
+            
+            // Récupérer les 5 transactions les plus récentes
+            const sortedTransactions = [...transactions].sort((a, b) => 
+              new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+            );
+            setRecentTransactions(sortedTransactions.slice(0, 5));
+            
+            logger.info('Loading dashboard stats', {
+              totalSales: total_sales_amount,
+              totalRepairs: total_repairs_amount,
+              inventory: {
+                phones: phones_in_stock,
+                accessories: accessories_in_stock
+              }
+            });
+          }
+        } catch (error) {
+          console.error('Erreur lors du chargement des transactions:', error);
+          logger.error('Error loading transactions', error);
         }
-      });
-    } catch (err) {
-      logger.error('Error loading dashboard stats', err);
-    }
-  }, [user, stats]);
+      } catch (err) {
+        logger.error('Error loading dashboard stats', err);
+      }
+    };
+    
+    loadDashboardData();
+    
+    // S'abonner aux mises à jour du stock
+    const unsubscribe = inventoryService.subscribe((type, _data) => {
+      if (['product_updated', 'stock_decreased'].includes(type)) {
+        // Recharger les données du tableau de bord lorsque le stock est mis à jour
+        loadDashboardData();
+      }
+    });
+    
+    return () => unsubscribe();
+  }, [user]);
 
   const salesData = [
     { name: 'Total Sales', value: stats.total_sales.amount },
@@ -129,7 +199,7 @@ function DashboardContent() {
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
         <h3 className="text-lg font-semibold mb-4">Recent Activity</h3>
         <div className="space-y-4">
-          {storeData.transactions.slice(0, 5).map((transaction) => (
+          {recentTransactions.map((transaction) => (
             <div key={transaction.id} className="flex items-center justify-between py-3 border-b border-gray-200 last:border-0">
               <div>
                 <p className="font-medium text-gray-900">{transaction.customer_name}</p>

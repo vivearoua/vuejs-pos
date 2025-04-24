@@ -8,18 +8,36 @@ export interface Client {
   notes: string | null;
   total_purchases?: number;
   last_purchase_date?: string;
+  // Attributs du programme de fidélité
+  loyalty_points: number;
+  loyalty_level: 'standard' | 'silver' | 'gold' | 'platinum';
+  loyalty_card_number?: string;
+  loyalty_registration_date?: string;
+  loyalty_history?: LoyaltyHistoryItem[];
+}
+
+export interface LoyaltyHistoryItem {
+  date: string;
+  type: 'earn' | 'redeem' | 'level_change';
+  points_change: number;
+  transaction_id?: string;
+  description: string;
+  previous_level?: string;
+  new_level?: string;
 }
 
 class ClientService {
   private static instance: ClientService;
   private clients: Client[] = [];
   private subscribers: ((type: string, data: any) => void)[] = [];
+  private clientsData: any = null;
+  private storeData: any = null;
 
   private constructor() {
     this.loadFromStorage();
-    // Si aucun client n'est chargé, initialiser avec les données de store.json
+    // Si aucun client n'est chargé, initialiser avec les données de clientsdb.json
     if (this.clients.length === 0) {
-      this.initializeFromStoreData();
+      this.initializeFromClientData();
     }
   }
 
@@ -39,6 +57,55 @@ class ClientService {
 
   private saveToStorage(): void {
     localStorage.setItem('clients', JSON.stringify(this.clients));
+    this.updateClientsJson();
+  }
+
+  private updateClientsJson(): void {
+    (async () => {
+      try {
+        if (!this.clientsData) {
+          const clientsData = await import('../data/clientsdb.json');
+          this.clientsData = clientsData.default || clientsData;
+        }
+        
+        // Update only the clients part of the clients data
+        this.clientsData.clients = this.clients.map(client => ({
+          id: client.id,
+          name: client.name,
+          email: client.email,
+          phone: client.phone,
+          address: client.address,
+          registration_date: client.registration_date,
+          notes: client.notes,
+          loyalty_points: client.loyalty_points,
+          loyalty_level: client.loyalty_level,
+          loyalty_card_number: client.loyalty_card_number,
+          loyalty_registration_date: client.loyalty_registration_date,
+          loyalty_history: client.loyalty_history
+        }));
+        
+        // Use the API endpoint to save the updated clients data
+        fetch(`${import.meta.env.VITE_API_URL}/updateclients`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            data: this.clientsData.clients 
+          }),
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to update clientsdb.json');
+          }
+          return response.json();
+        })
+        .then(data => console.log('clientsdb.json updated successfully:', data))
+        .catch(error => console.error('Error updating clientsdb.json:', error));
+      } catch (error) {
+        console.error('Error preparing data for clientsdb.json update:', error);
+      }
+    })();
   }
 
   public subscribe(callback: (type: string, data: any) => void): () => void {
@@ -52,29 +119,74 @@ class ClientService {
     this.subscribers.forEach(callback => callback(type, data));
   }
 
-  private async initializeFromStoreData(): Promise<void> {
+  private async initializeFromClientData(): Promise<void> {
     try {
-      const storeData = await import('../data/store.json');
-      const data = storeData.default || storeData;
+      // Charger les clients depuis l'API
+      await this.loadClientsFromApi();
       
-      // Convertir les clients au format de notre application
-      this.clients = data.clients.map((client: any) => ({
-        id: client.id,
-        name: client.name,
-        email: client.email,
-        phone: client.phone,
-        address: client.address,
-        registration_date: client.registration_date,
-        notes: client.notes,
+      // Charger les transactions depuis store.json pour calculer les statistiques
+      const storeData = await import('../data/store.json');
+      this.storeData = storeData.default || storeData;
+      
+      // Mettre à jour les statistiques d'achat
+      this.clients = this.clients.map(client => ({
+        ...client,
         // Calculer les statistiques d'achat basées sur les transactions
-        total_purchases: this.calculateTotalPurchases(client.id, data.transactions),
-        last_purchase_date: this.findLastPurchaseDate(client.id, data.transactions)
+        total_purchases: this.calculateTotalPurchases(client.id, this.storeData.transactions),
+        last_purchase_date: this.findLastPurchaseDate(client.id, this.storeData.transactions),
+        loyalty_points: 0,
+        loyalty_level: 'standard',
+        loyalty_card_number: undefined,
+        loyalty_registration_date: undefined,
+        loyalty_history: []
       }));
       
       this.saveToStorage();
-      console.log('Clients initialisés depuis store.json:', this.clients.length);
+      console.log('Clients initialisés depuis clientsdb.json:', this.clients.length);
     } catch (error) {
-      console.error('Erreur lors du chargement des clients depuis store.json:', error);
+      console.error('Erreur lors du chargement des clients depuis clientsdb.json:', error);
+      
+      // Fallback: charger depuis le fichier local si l'API échoue
+      try {
+        const clientsData = await import('../data/clientsdb.json');
+        this.clientsData = clientsData.default || clientsData;
+        
+        this.clients = this.clientsData.clients.map((client: any) => ({
+          id: client.id,
+          name: client.name,
+          email: client.email,
+          phone: client.phone,
+          address: client.address,
+          registration_date: client.registration_date,
+          notes: client.notes,
+          loyalty_points: client.loyalty_points || 0,
+          loyalty_level: client.loyalty_level || 'standard',
+          loyalty_card_number: client.loyalty_card_number,
+          loyalty_registration_date: client.loyalty_registration_date,
+          loyalty_history: client.loyalty_history || []
+        }));
+        
+        console.log('Clients chargés depuis le fichier local:', this.clients.length);
+      } catch (fallbackError) {
+        console.error('Échec du chargement de secours:', fallbackError);
+      }
+    }
+  }
+
+  private async loadClientsFromApi(): Promise<void> {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/clients`);
+      if (!response.ok) {
+        throw new Error('Erreur lors de la récupération des clients depuis l\'API');
+      }
+      
+      const clients = await response.json();
+      this.clients = clients;
+      this.clientsData = { clients };
+      console.log('Clients chargés depuis l\'API:', this.clients.length);
+    } catch (error) {
+      console.error('Erreur lors du chargement des clients depuis l\'API:', error);
+      throw error; // Propager l'erreur pour le traitement de secours
     }
   }
 
@@ -118,6 +230,11 @@ class ClientService {
     const newClient: Client = {
       ...client,
       id: `C${Date.now().toString().slice(-6)}`, // Générer un ID unique
+      loyalty_points: 0,
+      loyalty_level: 'standard',
+      loyalty_card_number: undefined,
+      loyalty_registration_date: undefined,
+      loyalty_history: []
     };
     
     this.clients.push(newClient);
@@ -175,7 +292,7 @@ class ClientService {
   }
 
   public exportClientsToCSV(): string {
-    const headers = ['ID', 'Nom', 'Email', 'Téléphone', 'Adresse', 'Date d\'inscription', 'Notes', 'Total des achats', 'Dernier achat'];
+    const headers = ['ID', 'Nom', 'Email', 'Téléphone', 'Adresse', 'Date d\'inscription', 'Notes', 'Total des achats', 'Dernier achat', 'Points de fidélité', 'Niveau de fidélité', 'Numéro de carte de fidélité', 'Date d\'inscription à la fidélité'];
     const rows = this.clients.map(client => [
       client.id,
       client.name,
@@ -185,7 +302,11 @@ class ClientService {
       client.registration_date || '',
       client.notes || '',
       client.total_purchases?.toString() || '0',
-      client.last_purchase_date || ''
+      client.last_purchase_date || '',
+      client.loyalty_points.toString(),
+      client.loyalty_level,
+      client.loyalty_card_number || '',
+      client.loyalty_registration_date || ''
     ]);
     
     const csvContent = [
@@ -194,6 +315,165 @@ class ClientService {
     ].join('\n');
     
     return csvContent;
+  }
+
+  public addLoyaltyPoints(clientId: string, points: number, description?: string, transactionId?: string): Promise<Client | null> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/loyalty/add-points`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            clientId,
+            points,
+            description,
+            transactionId
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Erreur lors de l\'ajout de points de fidélité');
+        }
+
+        const data = await response.json();
+        
+        // Mettre à jour le client dans la liste locale
+        const clientIndex = this.clients.findIndex(c => c.id === clientId);
+        if (clientIndex !== -1) {
+          this.clients[clientIndex] = data.client;
+          this.notify('loyalty_points_updated', data.client);
+        }
+        
+        resolve(data.client);
+      } catch (error) {
+        console.error('Erreur lors de l\'ajout de points de fidélité:', error);
+        reject(error);
+      }
+    });
+  }
+
+  public redeemLoyaltyPoints(clientId: string, points: number, description?: string): Promise<Client | null> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/loyalty/redeem-points`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            clientId,
+            points,
+            description
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Erreur lors de l\'utilisation de points de fidélité');
+        }
+
+        const data = await response.json();
+        
+        // Mettre à jour le client dans la liste locale
+        const clientIndex = this.clients.findIndex(c => c.id === clientId);
+        if (clientIndex !== -1) {
+          this.clients[clientIndex] = data.client;
+          this.notify('loyalty_points_redeemed', data.client);
+        }
+        
+        resolve(data.client);
+      } catch (error) {
+        console.error('Erreur lors de l\'utilisation de points de fidélité:', error);
+        reject(error);
+      }
+    });
+  }
+
+  public updateLoyaltyLevel(clientId: string, level: 'standard' | 'silver' | 'gold' | 'platinum'): Promise<Client | null> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/loyalty/update-level`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            clientId,
+            level
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Erreur lors de la mise à jour du niveau de fidélité');
+        }
+
+        const data = await response.json();
+        
+        // Mettre à jour le client dans la liste locale
+        const clientIndex = this.clients.findIndex(c => c.id === clientId);
+        if (clientIndex !== -1) {
+          this.clients[clientIndex] = data.client;
+          this.notify('loyalty_level_updated', data.client);
+        }
+        
+        resolve(data.client);
+      } catch (error) {
+        console.error('Erreur lors de la mise à jour du niveau de fidélité:', error);
+        reject(error);
+      }
+    });
+  }
+
+  public getLoyaltyLevelBenefits(level: 'standard' | 'silver' | 'gold' | 'platinum'): { discount: number, benefits: string[] } {
+    switch (level) {
+      case 'platinum':
+        return {
+          discount: 15,
+          benefits: [
+            'Remise de 15% sur tous les achats',
+            'Service prioritaire',
+            'Accès aux ventes privées',
+            'Réparations prioritaires',
+            'Garantie prolongée sur les produits'
+          ]
+        };
+      case 'gold':
+        return {
+          discount: 10,
+          benefits: [
+            'Remise de 10% sur tous les achats',
+            'Service prioritaire',
+            'Accès aux ventes privées',
+            'Réparations prioritaires'
+          ]
+        };
+      case 'silver':
+        return {
+          discount: 5,
+          benefits: [
+            'Remise de 5% sur tous les achats',
+            'Service prioritaire',
+            'Accès aux ventes privées'
+          ]
+        };
+      default:
+        return {
+          discount: 0,
+          benefits: [
+            'Accès au programme de fidélité',
+            'Cumul de points sur les achats'
+          ]
+        };
+    }
+  }
+
+  public calculatePointsForPurchase(amount: number): number {
+    // 1 point pour chaque 10€ d'achat, arrondi à l'entier inférieur
+    return Math.floor(amount / 10);
   }
 }
 

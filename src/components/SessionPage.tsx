@@ -5,7 +5,7 @@ import ErrorBoundary from './ErrorBoundary';
 import PaymentModal from './PaymentModal';
 import { transactionService } from '../services/transactionService';
 import { userService } from '../services/userService';
-import { customerService } from '../services/customerService';
+import { clientService } from '../services/clientService';
 import type { PaymentDetails } from './PaymentModal';
 
 const ProductCard: React.FC<{ 
@@ -65,19 +65,23 @@ const SessionContent: React.FC = () => {
 
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [lastTransaction, setLastTransaction] = useState<string | null>(null);
-  const [customers, setCustomers] = useState(customerService.getCustomers());
-  const [selectedCustomerId, setSelectedCustomerId] = useState(customerService.getOrCreateGuestCustomer().id);
+  const [customers, setCustomers] = useState(clientService.getClients());
+  const [selectedCustomerId, setSelectedCustomerId] = useState('');
   const [showExportOptions, setShowExportOptions] = useState(false);
 
   useEffect(() => {
     // Charger les clients depuis le service
-    const loadedCustomers = customerService.getCustomers();
+    const loadedCustomers = clientService.getClients();
     setCustomers(loadedCustomers);
     
-    // Sélectionner le client passager par défaut
-    const guestCustomer = customerService.getOrCreateGuestCustomer();
-    setSelectedCustomerId(guestCustomer.id);
-    setCustomerName(guestCustomer.name);
+    // Sélectionner le premier client par défaut ou 'Client Passager' si disponible
+    if (loadedCustomers.length > 0) {
+      const guestCustomer = loadedCustomers.find(c => c.name === 'Client Passager') || loadedCustomers[0];
+      setSelectedCustomerId(guestCustomer.id);
+      setCustomerName(guestCustomer.name);
+    } else {
+      setCustomerName('Client Passager');
+    }
     
     logger.info('Session page mounted', {
       customer: customerName,
@@ -89,7 +93,7 @@ const SessionContent: React.FC = () => {
   }, []);
 
   const handleCustomerChange = (customerId: string) => {
-    const selectedCustomer = customerService.getCustomerById(customerId);
+    const selectedCustomer = clientService.getClientById(customerId);
     if (selectedCustomer) {
       setSelectedCustomerId(customerId);
       setCustomerName(selectedCustomer.name);
@@ -171,11 +175,12 @@ const SessionContent: React.FC = () => {
       }
 
       // Obtenir le client sélectionné
-      const selectedCustomer = customerService.getCustomerById(selectedCustomerId);
+      const selectedCustomer = clientService.getClientById(selectedCustomerId);
       if (!selectedCustomer) {
         throw new Error('Client non trouvé');
       }
 
+      // Créer la transaction sans recharger la page
       const transaction = transactionService.createTransaction({
         customer: selectedCustomer.name,
         customerId: selectedCustomerId,
@@ -191,9 +196,35 @@ const SessionContent: React.FC = () => {
         payment: paymentDetails
       });
 
+      // Mettre à jour l'interface sans recharger la page
       setLastTransaction(transaction.id);
       setIsPaymentModalOpen(false);
+      
+      // Réinitialiser la session sans recharger la page
       resetSession();
+      
+      // Afficher un message de confirmation
+      const successMessage = document.createElement('div');
+      successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50';
+      successMessage.innerHTML = `
+        <div class="flex items-center">
+          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <p class="font-bold">Transaction réussie</p>
+            <p class="text-sm">ID: ${transaction.id}</p>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(successMessage);
+      
+      // Supprimer le message après 3 secondes
+      setTimeout(() => {
+        if (document.body.contains(successMessage)) {
+          document.body.removeChild(successMessage);
+        }
+      }, 3000);
 
       logger.info('Transaction completed', {
         transactionId: transaction.id,

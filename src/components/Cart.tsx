@@ -1,11 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { Trash2, CreditCard } from 'lucide-react';
 import { logger } from '../utils/logger';
 import ErrorBoundary from './ErrorBoundary';
 
 function CartContent() {
-  const { cart, removeFromCart, updateQuantity } = useCart();
+  const { cart, removeFromCart, updateQuantity, updatePrice } = useCart();
+  const [editingPriceId, setEditingPriceId] = useState<string | null>(null);
+  const [newPrice, setNewPrice] = useState<string>('');
+  const [priceError, setPriceError] = useState<string>('');
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const tax = total * 0.08; // 8% tax
@@ -89,7 +92,53 @@ function CartContent() {
                       <h3 className="text-lg font-medium text-gray-900">
                         {item.name}
                       </h3>
-                      <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                      {editingPriceId === item.id ? (
+                        <div className="flex items-center space-x-2">
+                          <input
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={newPrice}
+                            onChange={e => setNewPrice(e.target.value)}
+                            className="w-20 px-2 py-1 border rounded"
+                          />
+                          <button
+                            className="text-green-600 font-semibold"
+                            onClick={() => {
+                              const priceValue = parseFloat(newPrice);
+                              const originalItem = cart.find(i => i.id === item.id);
+                              if (!isNaN(priceValue) && originalItem) {
+                                const minAllowed = originalItem.price * 0.7;
+                                if (priceValue >= minAllowed) {
+                                  updatePrice(item.id, priceValue);
+                                  setEditingPriceId(null);
+                                  setPriceError('');
+                                } else {
+                                  setPriceError(`Le prix doit être au moins égal à 70% du prix de départ (${minAllowed.toFixed(2)}).`);
+                                }
+                              }
+                            }}
+                          >Valider</button>
+                          <button
+                            className="text-gray-500 ml-1"
+                            onClick={() => { setEditingPriceId(null); setPriceError(''); }}
+                          >Annuler</button>
+                          {priceError && (
+                            <div className="text-red-500 text-xs mt-1">{priceError}</div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="flex items-center space-x-2">
+                          <span className="text-gray-600">${item.price.toFixed(2)}</span>
+                          <button
+                            className="text-blue-500 text-xs underline"
+                            onClick={() => {
+                              setEditingPriceId(item.id);
+                              setNewPrice(item.price.toString());
+                            }}
+                          >Modifier</button>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center space-x-6">

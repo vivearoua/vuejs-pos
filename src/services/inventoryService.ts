@@ -4,6 +4,7 @@ interface BaseProduct {
   stock: number;
   minStock?: number;
   lastUpdated: string;
+  imageUrl?: string;
 }
 
 interface Phone extends BaseProduct {
@@ -41,9 +42,9 @@ class InventoryService {
 
   private constructor() {
     this.loadFromStorage();
-    // Si aucun produit n'est chargé, initialiser avec les données de store.json
+    // Si aucun produit n'est chargé, initialiser avec les données de productsdb.json
     if (this.products.length === 0) {
-      this.initializeFromStoreData();
+      this.initializeFromProductsData();
     }
   }
 
@@ -70,6 +71,78 @@ class InventoryService {
   private saveToStorage(): void {
     localStorage.setItem('inventory_products', JSON.stringify(this.products));
     localStorage.setItem('inventory_movements', JSON.stringify(this.movements));
+    
+    // Synchroniser avec le fichier productsdb.json
+    this.updateProductsJson();
+  }
+  
+  private updateProductsJson(): void {
+    (async () => {
+      try {
+        // Charger le fichier productsdb.json
+        const productsData = await import('../data/productsdb.json');
+        const data = productsData.default || productsData;
+        
+        // Séparer les produits par type
+        const phones: any[] = [];
+        const accessories: any[] = [];
+        
+        this.products.forEach(product => {
+          if (product.type === 'phone') {
+            phones.push({
+              id: product.id,
+              brand: product.brand,
+              model: product.model,
+              storage: product.storage,
+              color: product.color,
+              price: product.price,
+              stock: product.stock,
+              added_date: product.lastUpdated,
+              imageUrl: product.imageUrl || ''
+            });
+          } else if (product.type === 'accessory') {
+            accessories.push({
+              id: product.id,
+              name: product.name,
+              brand: product.brand,
+              compatible_with: product.compatible_with,
+              price: product.price,
+              stock: product.stock,
+              added_date: product.lastUpdated,
+              imageUrl: product.imageUrl || ''
+            });
+          }
+        });
+        
+        // Mettre à jour les données
+        data.phones = phones;
+        data.accessories = accessories;
+        
+        // Envoyer les données mises à jour au serveur
+        fetch(`${import.meta.env.VITE_API_URL}/updateproducts`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            data: {
+              phones,
+              accessories
+            }
+          }),
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to update productsdb.json');
+          }
+          return response.json();
+        })
+        .then(data => console.log('productsdb.json updated successfully:', data))
+        .catch(error => console.error('Error updating productsdb.json:', error));
+      } catch (error) {
+        console.error('Error preparing data for productsdb.json update:', error);
+      }
+    })();
   }
 
   public subscribe(callback: (type: string, data: any) => void): () => void {
@@ -193,6 +266,61 @@ class InventoryService {
     return [...this.movements];
   }
 
+  /**
+   * Diminue le stock d'un produit et enregistre un mouvement de stock
+   * @param productId ID du produit
+   * @param quantity Quantité à retirer du stock
+   * @param reason Raison du mouvement (par défaut 'sale')
+   * @param reference Référence optionnelle (ex: ID de transaction)
+   * @returns Le produit mis à jour ou undefined si le produit n'existe pas
+   */
+  public decreaseStock(productId: string, quantity: number, reason: 'sale' | 'return' | 'adjustment' = 'sale', reference?: string): Product | undefined {
+    // Trouver le produit
+    const product = this.getProduct(productId);
+    if (!product) {
+      console.error(`Produit non trouvé: ${productId}`);
+      return undefined;
+    }
+
+    // Vérifier que la quantité est positive
+    if (quantity <= 0) {
+      console.error(`Quantité invalide: ${quantity}`);
+      return product;
+    }
+
+    // Vérifier que le stock est suffisant
+    if (product.stock < quantity) {
+      console.error(`Stock insuffisant: ${product.stock} < ${quantity}`);
+      // On met à jour quand même mais avec le stock disponible
+      quantity = product.stock;
+    }
+
+    // Mettre à jour le stock
+    const updatedProduct = this.updateProduct(productId, {
+      stock: Math.max(0, product.stock - quantity),
+      lastUpdated: new Date().toISOString()
+    });
+
+    // Enregistrer le mouvement de stock
+    this.addMovement({
+      productId,
+      type: 'out',
+      quantity,
+      reason,
+      reference
+    });
+
+    // Notifier que le stock a été mis à jour
+    this.notify('stock_decreased', {
+      product: updatedProduct,
+      quantity,
+      reason,
+      reference
+    });
+
+    return updatedProduct;
+  }
+
   public getStockStatus(): {
     totalProducts: number;
     lowStock: Product[];
@@ -263,7 +391,8 @@ class InventoryService {
       'compatible_with',
       'price',
       'stock',
-      'minStock'
+      'minStock',
+      'imageUrl'
     ];
 
     const lines = [headers.join(',')];
@@ -282,11 +411,11 @@ class InventoryService {
     return lines.join('\n');
   }
 
-  private async initializeFromStoreData(): Promise<void> {
+  private async initializeFromProductsData(): Promise<void> {
     try {
-      // Charger le fichier store.json directement comme module
-      const storeData = await import('../data/store.json');
-      const data = storeData.default || storeData;
+      // Charger le fichier productsdb.json directement comme module
+      const productsData = await import('../data/productsdb.json');
+      const data = productsData.default || productsData;
       
       // Convertir les téléphones au format de notre application
       const phones: Product[] = data.phones.map((phone: any) => ({
@@ -299,7 +428,8 @@ class InventoryService {
         price: phone.price,
         stock: phone.stock,
         minStock: 5, // Valeur par défaut
-        lastUpdated: phone.added_date
+        lastUpdated: phone.added_date,
+        imageUrl: phone.imageUrl || '' // Ajout du support des images
       }));
       
       // Convertir les accessoires au format de notre application
@@ -312,15 +442,16 @@ class InventoryService {
         stock: accessory.stock,
         minStock: 10, // Valeur par défaut
         compatible_with: accessory.compatible_with,
-        lastUpdated: accessory.added_date
+        lastUpdated: accessory.added_date,
+        imageUrl: accessory.imageUrl || '' // Ajout du support des images
       }));
       
       // Combiner les produits et les sauvegarder
       this.products = [...phones, ...accessories];
       this.saveToStorage();
-      console.log('Produits initialisés depuis store.json:', this.products.length);
+      console.log('Produits initialisés depuis productsdb.json:', this.products.length);
     } catch (error) {
-      console.error('Erreur lors du chargement des données de store.json:', error);
+      console.error('Erreur lors du chargement des données de productsdb.json:', error);
     }
   }
 }

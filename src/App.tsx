@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import SessionPage from './components/SessionPage';
 import InventoryPage from './components/InventoryPage';
 import ClientPage from './components/clients/ClientPage';
@@ -14,12 +14,8 @@ import Dashboard from './components/Dashboard';
 import Transactions from './components/Transactions';
 import { fileService } from './services/fileService';
 
-function PrivateRoute({ element }: { element: React.ReactNode }) {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? <>{element}</> : <Navigate to="/login" />;
-}
-
-function Layout({ children }: { children: React.ReactNode }) {
+// Définition du composant Layout qui utilise le hook useAuth
+function Layout() {
   const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = React.useState('dashboard');
 
@@ -54,47 +50,71 @@ function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className=" mx-auto px-4 py-6">
-        <div className="flex gap-6">
-          {/* Navigation */}
-          <nav className="w-64 bg-white rounded-lg shadow-sm p-4 h-[calc(100vh-8rem)]">
-            <ul className="space-y-2">
-              {navigation.map((item) => {
-                return (
-                  <li key={item.id}>
-                    <button
-                      onClick={() => setActiveTab(item.id)}
-                      className={`w-full flex items-center space-x-2 px-4 py-2 rounded-lg ${
-                        activeTab === item.id
-                          ? 'bg-blue-50 text-blue-600'
-                          : 'text-gray-600 hover:bg-gray-50'
-                      }`}
-                    >
-                      <span>{item.name}</span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
+      {/* Navigation */}
+      <div className="border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4">
+          <nav className="flex -mb-px">
+            {navigation.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`py-4 px-6 border-b-2 font-medium text-sm ${
+                  activeTab === item.id
+                    ? 'border-indigo-500 text-indigo-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab(item.id);
+                }}
+              >
+                {item.name}
+              </a>
+            ))}
           </nav>
-
-          {/* Content Area */}
-          <div className="flex-1 bg-white rounded-lg shadow-sm p-6">
-            {activeTab === 'dashboard' && <Dashboard />}
-            {activeTab === 'session' && <SessionPage />}
-            {activeTab === 'products' && <Products />}
-            {activeTab === 'cart' && <Cart />}
-            {activeTab === 'repairs' && <RepairPage />}
-            {activeTab === 'inventory' && <InventoryPage />}
-            {activeTab === 'clients' && <ClientPage />}
-            {activeTab === 'transactions' && <Transactions />}
-          </div>
         </div>
+      </div>
+
+      {/* Main content */}
+      <main className="max-w-7xl mx-auto px-4 py-6">
+        {activeTab === 'dashboard' && <Dashboard />}
+        {activeTab === 'session' && <SessionPage />}
+        {activeTab === 'products' && <Products />}
+        {activeTab === 'cart' && <Cart />}
+        {activeTab === 'repairs' && <RepairPage />}
+        {activeTab === 'inventory' && <InventoryPage />}
+        {activeTab === 'clients' && <ClientPage />}
+        {activeTab === 'transactions' && <Transactions />}
       </main>
     </div>
   );
 }
+
+// Composant qui vérifie l'authentification
+const RequireAuth = () => {
+  const { isAuthenticated } = useAuth();
+  
+  // Si l'utilisateur n'est pas authentifié, rediriger vers la page de connexion
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+  
+  // Sinon, afficher le layout
+  return <Layout />;
+};
+
+// Composant qui vérifie si l'utilisateur est déjà connecté
+const LoginRoute = () => {
+  const { isAuthenticated } = useAuth();
+  
+  // Si l'utilisateur est déjà authentifié, rediriger vers le dashboard
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" />;
+  }
+  
+  // Sinon, afficher la page de connexion
+  return <Login />;
+};
 
 function App() {
   useEffect(() => {
@@ -111,27 +131,8 @@ function App() {
         <CartProvider>
           <SessionProvider>
             <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route
-                path="/*"
-                element={
-                  <PrivateRoute element={
-                    <Layout>
-                      <Routes>
-                        <Route path="/" element={<Dashboard />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/session" element={<SessionPage />} />
-                        <Route path="/products" element={<Products />} />
-                        <Route path="/cart" element={<Cart />} />
-                        <Route path="/repairs" element={<RepairPage />} />
-                        <Route path="/inventory" element={<InventoryPage />} />
-                        <Route path="/clients" element={<ClientPage />} />
-                        <Route path="/transactions" element={<Transactions />} />
-                      </Routes>
-                    </Layout>
-                  } />
-                }
-              />
+              <Route path="/login" element={<LoginRoute />} />
+              <Route path="/*" element={<RequireAuth />} />
             </Routes>
           </SessionProvider>
         </CartProvider>

@@ -25,7 +25,11 @@ function LoginComponent() {
       const success = await login(username, password);
       if (success) {
         logger.info('Login successful', { username });
-        navigate('/dashboard');
+        // Forcer un délai pour s'assurer que le localStorage est mis à jour
+        setTimeout(() => {
+          // Redirection vers la page principale
+          navigate('/');
+        }, 100);
       } else {
         logger.warn('Login failed', { username });
         setError('Nom d\'utilisateur ou mot de passe invalide');

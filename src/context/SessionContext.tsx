@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import storeData from '../data/store.json';
+import { inventoryService } from '../services/inventoryService';
 
 interface BaseProduct {
   id: string;
@@ -54,19 +54,13 @@ interface SessionContextType {
   resetSession: () => void;
 }
 
-// Convertir les téléphones et accessoires en format uniforme
-const convertToProducts = (): Product[] => {
-  const phones: Phone[] = storeData.phones.map(phone => ({
-    ...phone,
-    type: 'phone' as const
-  }));
-
-  const accessories: Accessory[] = storeData.accessories.map(accessory => ({
-    ...accessory,
-    type: 'accessory' as const
-  }));
-
-  return [...phones, ...accessories];
+// Obtenir les produits depuis le service d'inventaire
+const getProducts = (): Product[] => {
+  // Récupérer tous les produits depuis le service d'inventaire
+  const products = inventoryService.getAllProducts();
+  
+  // Les produits sont déjà au bon format, donc on peut les retourner directement
+  return products;
 };
 
 export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -76,11 +70,51 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [discount, setDiscount] = useState(0);
   const [shipping, setShipping] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(convertToProducts());
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
 
+  // Charger les produits au montage du composant
   useEffect(() => {
-    const lowercaseSearch = searchTerm.toLowerCase();
-    const filtered = convertToProducts().filter(product => {
+    const loadProducts = async () => {
+      try {
+        // Récupérer les produits depuis le service d'inventaire
+        const products = getProducts();
+        setAllProducts(products);
+        
+        // Appliquer le filtre de recherche initial
+        if (searchTerm) {
+          filterProducts(searchTerm, products);
+        } else {
+          setFilteredProducts(products);
+        }
+      } catch (error) {
+        console.error('Erreur lors du chargement des produits:', error);
+      }
+    };
+    
+    loadProducts();
+    
+    // S'abonner aux mises à jour du stock
+    const unsubscribe = inventoryService.subscribe((type, _data) => {
+      if (['product_updated', 'stock_decreased'].includes(type)) {
+        // Recharger les produits lorsque le stock est mis à jour
+        setAllProducts(getProducts());
+      }
+    });
+    
+    // Se désabonner lors du démontage
+    return () => unsubscribe();
+  }, []);
+  
+  // Filtrer les produits lorsque le terme de recherche change
+  useEffect(() => {
+    filterProducts(searchTerm, allProducts);
+  }, [searchTerm, allProducts]);
+  
+  // Fonction pour filtrer les produits selon le terme de recherche
+  const filterProducts = (term: string, products: Product[]) => {
+    const lowercaseSearch = term.toLowerCase();
+    const filtered = products.filter(product => {
       if (product.type === 'phone') {
         return (
           product.brand.toLowerCase().includes(lowercaseSearch) ||
@@ -94,7 +128,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
       }
     });
     setFilteredProducts(filtered);
-  }, [searchTerm]);
+  };
 
   const addToCart = useCallback((product: Product) => {
     setCart(prevCart => {

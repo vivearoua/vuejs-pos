@@ -1,0 +1,127 @@
+{
+  "phones": [
+    {
+      "id": "P001",
+      "brand": "Samsung",
+      "model": "Galaxy S23",
+      "storage": "128GB",
+      "color": "Phantom Black",
+      "price": 799.99,
+      "stock": 25,
+      "imei_prefix": "354123",
+      "warranty_months": 12,
+      "added_date": "2024-03-01T12:00:00Z",
+      "imageUrl": ""
+    },
+    {
+      "id": "P002",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro",
+      "storage": "256GB",
+      "color": "Space Black",
+      "price": 1099.99,
+      "stock": 15,
+      "imei_prefix": "356789",
+      "warranty_months": 24,
+      "added_date": "2024-03-05T14:00:00Z",
+      "imageUrl": ""
+    },
+    {
+      "id": "P003",
+      "brand": "Google",
+      "model": "Pixel 8",
+      "storage": "128GB",
+      "color": "Obsidian",
+      "price": 699.99,
+      "stock": 20,
+      "imei_prefix": "352456",
+      "warranty_months": 12,
+      "added_date": "2024-10-15T10:00:00Z",
+      "imageUrl": ""
+    },
+    {
+      "id": "P004",
+      "brand": "OnePlus",
+      "model": "11",
+      "storage": "256GB",
+      "color": "Titan Black",
+      "price": 849.99,
+      "stock": 10,
+      "imei_prefix": "359876",
+      "warranty_months": 18,
+      "added_date": "2024-11-01T09:00:00Z",
+      "imageUrl": ""
+    }
+  ],
+  "accessories": [
+    {
+      "id": "A001",
+      "name": "Wireless Charger",
+      "brand": "Belkin",
+      "price": 29.99,
+      "stock": 50,
+      "type": "charger",
+      "compatible_with": [
+        "Samsung Galaxy S23",
+        "iPhone 14 Pro",
+        "Pixel 8"
+      ],
+      "added_date": "2024-03-10T09:00:00Z",
+      "imageUrl": ""
+    },
+    {
+      "id": "A002",
+      "name": "Rugged Case",
+      "brand": "Spigen",
+      "price": 24.99,
+      "stock": 75,
+      "type": "case",
+      "compatible_with": [
+        "iPhone 14 Pro",
+        "OnePlus 11"
+      ],
+      "added_date": "2024-03-12T11:00:00Z",
+      "imageUrl": ""
+    },
+    {
+      "id": "A003",
+      "name": "Bluetooth Earbuds",
+      "brand": "Jabra",
+      "price": 79.99,
+      "stock": 30,
+      "type": "audio",
+      "compatible_with": [
+        "Universal"
+      ],
+      "added_date": "2024-04-01T13:00:00Z",
+      "imageUrl": ""
+    },
+    {
+      "id": "A004",
+      "name": "Screen Protector",
+      "brand": "Zagg",
+      "price": 19.99,
+      "stock": 100,
+      "type": "screen_protector",
+      "compatible_with": [
+        "Samsung Galaxy S23",
+        "Pixel 8"
+      ],
+      "added_date": "2024-05-15T15:00:00Z",
+      "imageUrl": ""
+    },
+    {
+      "id": "A005",
+      "name": "USB-C Cable",
+      "brand": "Anker",
+      "price": 14.99,
+      "stock": 200,
+      "type": "cable",
+      "compatible_with": [
+        "Universal"
+      ],
+      "added_date": "2024-06-01T10:00:00Z",
+      "imageUrl": ""
+    }
+  ]
+}

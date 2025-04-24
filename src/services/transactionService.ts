@@ -62,6 +62,7 @@ class TransactionService {
   private static instance: TransactionService;
   private transactions: Transaction[] = [];
   private storeTransactions: StoreTransaction[] = [];
+  private apiUrl = import.meta.env.VITE_API_URL;
 
   private constructor() {
     // Charger les transactions depuis le localStorage
@@ -101,18 +102,72 @@ class TransactionService {
         
         // Afficher les données qui seraient sauvegardées dans store.json
         console.log('Transaction ajoutée à store.json:', storeTransaction);
-        console.log('Nouvelles transactions dans store.json:', this.storeTransactions);
         
-        // Dans une application réelle, nous sauvegarderions dans le fichier
-        // mais comme nous sommes dans un navigateur, nous ne pouvons pas modifier directement le fichier
-        this.downloadUpdatedStoreJson();
+        // Envoyer la transaction au serveur API de manière asynchrone
+        // sans bloquer l'interface utilisateur
+        setTimeout(() => {
+          this.sendTransactionToServer(storeTransaction)
+            .catch(err => console.error('Erreur lors de l\'envoi de la transaction:', err));
+        }, 100);
       }
     } catch (error) {
       console.error('Erreur lors de la sauvegarde des transactions:', error);
     }
   }
 
-  // Convertir une transaction au format utilisé dans store.json
+  // Envoyer la transaction au serveur API
+  private async sendTransactionToServer(transaction: StoreTransaction): Promise<void> {
+    try {
+      // Vérifier que la transaction est bien définie et a un type
+      if (!transaction || !transaction.type) {
+        console.error('Transaction invalide ou sans type:', transaction);
+        throw new Error('La transaction est invalide ou ne contient pas de type');
+      }
+
+      // S'assurer que les valeurs numériques sont bien des nombres
+      const formattedTransaction = {
+        ...transaction,
+        total_amount: parseFloat(transaction.total_amount as any),
+        discount: parseFloat((transaction.discount || 0) as any)
+      };
+
+      // Pour les transactions de type 'sale', formater les items
+      if (formattedTransaction.type === 'sale' && Array.isArray(formattedTransaction.items)) {
+        formattedTransaction.items = formattedTransaction.items.map(item => ({
+          item_type: item.item_type,
+          item_id: item.item_id,
+          quantity: parseInt(item.quantity as any),
+          unit_price: parseFloat(item.unit_price as any)
+        }));
+      }
+
+      console.log('Envoi de la transaction au serveur:', formattedTransaction);
+
+      // Ne pas manipuler l'état d'authentification pendant la requête
+      const response = await fetch(`${this.apiUrl}/newtransaction`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formattedTransaction),
+        // Éviter que fetch ne modifie les cookies ou l'état d'authentification
+        credentials: 'same-origin'
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Erreur lors de l'envoi de la transaction au serveur: ${errorData.error || response.statusText}`);
+      }
+
+      const result = await response.json();
+      console.log('Transaction envoyée au serveur avec succès:', result);
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi de la transaction au serveur:', error);
+      // En cas d'erreur, on propose quand même le téléchargement du fichier store.json
+      this.downloadUpdatedStoreJson();
+    }
+  }
+
   private convertToStoreFormat(transaction: Transaction): SaleStoreTransaction {
     return {
       id: transaction.id,
@@ -133,7 +188,6 @@ class TransactionService {
     };
   }
 
-  // Télécharger le fichier store.json mis à jour
   private downloadUpdatedStoreJson(): void {
     try {
       // Créer une copie du store.json avec les transactions mises à jour
@@ -164,39 +218,41 @@ class TransactionService {
   }
 
   public createTransaction(data: Omit<Transaction, 'id' | 'date'>): Transaction {
-    // Vérifier que le client et le caissier sont spécifiés
-    if (!data.customer || !data.customerId || !data.cashier) {
-      throw new Error('Le client et le caissier sont obligatoires pour créer une transaction');
+    try {
+      // Générer un ID unique pour la transaction
+      const id = `T${Date.now()}`;
+      const date = new Date().toISOString();
+      
+      // Créer l'objet transaction
+      const transaction: Transaction = {
+        id,
+        date,
+        ...data
+      };
+      
+      
+      // Ajouter la transaction à la liste
+      this.transactions.push(transaction);
+      
+      // Sauvegarder dans le stockage local
+      this.saveToStorage();
+      
+      return transaction;
+    } catch (error) {
+      console.error('Erreur lors de la création de la transaction:', error);
+      throw error;
     }
-
-    const transaction: Transaction = {
-      ...data,
-      id: `TR-${Date.now()}`,
-      date: new Date().toISOString(),
-    };
-
-    this.transactions.push(transaction);
-    this.saveToStorage();
-
-    // Mettre à jour le stock
-    this.updateInventory(transaction.items);
-
-    return transaction;
   }
 
   private updateInventory(items: CartItem[]): void {
-    items.forEach(item => {
-      try {
-        inventoryService.addMovement({
-          productId: item.id,
-          type: 'out',
-          quantity: item.quantity,
-          reason: 'sale'
-        });
-      } catch (err) {
-        console.error(`Erreur lors de la mise à jour du stock pour ${item.name}:`, err);
-      }
-    });
+    try {
+      // Mettre à jour le stock pour chaque article
+      items.forEach(item => {
+        inventoryService.decreaseStock(item.id, item.quantity);
+      });
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour de l\'inventaire:', error);
+    }
   }
 
   public getTransactions(): Transaction[] {

@@ -1,0 +1,385 @@
+{
+  "clients": [
+    {
+      "id": "C000",
+      "name": "Client passager",
+      "email": null,
+      "phone": null,
+      "address": null,
+      "registration_date": null,
+      "notes": "Client anonyme ou de passage sans inscription",
+      "loyalty_points": 0,
+      "loyalty_level": "standard",
+      "loyalty_card_number": null,
+      "loyalty_registration_date": null,
+      "loyalty_history": []
+    },
+    {
+      "id": "C001",
+      "name": "Alice Brown",
+      "email": "alice.brown@email.com",
+      "phone": "+1444555666",
+      "address": "123 Rue Principale, Montréal, QC",
+      "registration_date": "2024-06-10T14:00:00Z",
+      "notes": "Client régulier, préfère les produits Samsung",
+      "loyalty_points": 250,
+      "loyalty_level": "silver",
+      "loyalty_card_number": "LF001",
+      "loyalty_registration_date": "2024-07-01T10:00:00Z",
+      "loyalty_history": [
+        {
+          "date": "2024-07-01T10:00:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Inscription au programme de fidélité",
+          "previous_level": null,
+          "new_level": "standard"
+        },
+        {
+          "date": "2024-08-15T14:30:00Z",
+          "type": "earn",
+          "points_change": 150,
+          "transaction_id": "T002",
+          "description": "Achat de produits"
+        },
+        {
+          "date": "2024-10-20T11:15:00Z",
+          "type": "earn",
+          "points_change": 100,
+          "transaction_id": "T005",
+          "description": "Achat de produits"
+        },
+        {
+          "date": "2024-11-01T09:00:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Passage au niveau Silver",
+          "previous_level": "standard",
+          "new_level": "silver"
+        }
+      ]
+    },
+    {
+      "id": "C002",
+      "name": "Bob Wilson",
+      "email": "bob.wilson@email.com",
+      "phone": "+1777888999",
+      "address": "456 Avenue des Pins, Québec, QC",
+      "registration_date": "2024-07-15T09:30:00Z",
+      "notes": "A souvent des réparations",
+      "loyalty_points": 500,
+      "loyalty_level": "gold",
+      "loyalty_card_number": "LF002",
+      "loyalty_registration_date": "2024-08-01T10:00:00Z",
+      "loyalty_history": [
+        {
+          "date": "2024-08-01T10:00:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Inscription au programme de fidélité",
+          "previous_level": null,
+          "new_level": "standard"
+        },
+        {
+          "date": "2024-09-10T16:45:00Z",
+          "type": "earn",
+          "points_change": 200,
+          "transaction_id": "T003",
+          "description": "Achat de produits"
+        },
+        {
+          "date": "2024-10-05T13:30:00Z",
+          "type": "earn",
+          "points_change": 300,
+          "transaction_id": "T004",
+          "description": "Achat de produits"
+        },
+        {
+          "date": "2024-10-10T09:15:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Passage au niveau Gold",
+          "previous_level": "silver",
+          "new_level": "gold"
+        }
+      ]
+    },
+    {
+      "id": "C003",
+      "name": "Clara Lee",
+      "email": "clara.lee@email.com",
+      "phone": "+1666777888",
+      "address": "789 Boulevard St-Laurent, Montréal, QC",
+      "registration_date": "2024-08-01T11:00:00Z",
+      "notes": "Fan de Google Pixel",
+      "loyalty_points": 150,
+      "loyalty_level": "silver",
+      "loyalty_card_number": "LF003",
+      "loyalty_registration_date": "2024-09-01T10:00:00Z",
+      "loyalty_history": [
+        {
+          "date": "2024-09-01T10:00:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Inscription au programme de fidélité",
+          "previous_level": null,
+          "new_level": "standard"
+        },
+        {
+          "date": "2024-09-15T14:30:00Z",
+          "type": "earn",
+          "points_change": 150,
+          "transaction_id": "T006",
+          "description": "Achat de produits"
+        },
+        {
+          "date": "2024-10-01T09:00:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Passage au niveau Silver",
+          "previous_level": "standard",
+          "new_level": "silver"
+        }
+      ]
+    },
+    {
+      "id": "C004",
+      "name": "David Kim",
+      "email": "david.kim@email.com",
+      "phone": "+1888999000",
+      "address": "321 Rue Sherbrooke, Sherbrooke, QC",
+      "registration_date": "2024-09-10T13:00:00Z",
+      "notes": "Acheté plusieurs accessoires",
+      "loyalty_points": 75,
+      "loyalty_level": "standard",
+      "loyalty_card_number": "LF004",
+      "loyalty_registration_date": "2024-10-01T10:00:00Z",
+      "loyalty_history": [
+        {
+          "date": "2024-10-01T10:00:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Inscription au programme de fidélité",
+          "previous_level": null,
+          "new_level": "standard"
+        },
+        {
+          "date": "2024-10-15T11:30:00Z",
+          "type": "earn",
+          "points_change": 75,
+          "transaction_id": "T007",
+          "description": "Achat de produits"
+        }
+      ]
+    },
+    {
+      "id": "C005",
+      "name": "Emma Carter",
+      "email": "emma.carter@email.com",
+      "phone": "+1222333444",
+      "address": "654 Rue Ste-Catherine, Montréal, QC",
+      "registration_date": "2024-10-05T15:00:00Z",
+      "notes": "Client fidèle depuis 2024",
+      "loyalty_points": 800,
+      "loyalty_level": "platinum",
+      "loyalty_card_number": "LF005",
+      "loyalty_registration_date": "2024-10-10T10:00:00Z",
+      "loyalty_history": [
+        {
+          "date": "2024-10-10T10:00:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Inscription au programme de fidélité",
+          "previous_level": null,
+          "new_level": "standard"
+        },
+        {
+          "date": "2024-10-20T15:45:00Z",
+          "type": "earn",
+          "points_change": 300,
+          "transaction_id": "T008",
+          "description": "Achat de produits"
+        },
+        {
+          "date": "2024-11-05T14:30:00Z",
+          "type": "earn",
+          "points_change": 500,
+          "transaction_id": "T009",
+          "description": "Achat de produits"
+        },
+        {
+          "date": "2024-11-10T09:00:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Passage au niveau Gold",
+          "previous_level": "silver",
+          "new_level": "gold"
+        },
+        {
+          "date": "2025-01-15T10:00:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Passage au niveau Platinum",
+          "previous_level": "gold",
+          "new_level": "platinum"
+        }
+      ]
+    },
+    {
+      "id": "C006",
+      "name": "Liam Patel",
+      "email": "liam.patel@email.com",
+      "phone": "+1333444555",
+      "address": "987 Avenue Laurier, Québec, QC",
+      "registration_date": "2024-11-01T10:00:00Z",
+      "notes": "Préfère les paiements par carte",
+      "loyalty_points": 0,
+      "loyalty_level": "standard",
+      "loyalty_card_number": null,
+      "loyalty_registration_date": null,
+      "loyalty_history": []
+    },
+    {
+      "id": "C007",
+      "name": "Sophie Nguyen",
+      "email": "sophie.nguyen@email.com",
+      "phone": "+1444666777",
+      "address": "147 Rue Peel, Montréal, QC",
+      "registration_date": "2024-12-15T12:00:00Z",
+      "notes": "Aime les produits OnePlus",
+      "loyalty_points": 50,
+      "loyalty_level": "standard",
+      "loyalty_card_number": "LF007",
+      "loyalty_registration_date": "2025-01-05T10:00:00Z",
+      "loyalty_history": [
+        {
+          "date": "2025-01-05T10:00:00Z",
+          "type": "level_change",
+          "points_change": 0,
+          "description": "Inscription au programme de fidélité",
+          "previous_level": null,
+          "new_level": "standard"
+        },
+        {
+          "date": "2025-01-15T16:30:00Z",
+          "type": "earn",
+          "points_change": 50,
+          "transaction_id": "T010",
+          "description": "Achat de produits"
+        }
+      ]
+    },
+    {
+      "id": "C008",
+      "name": "Thomas Dupont",
+      "email": "thomas.dupont@email.com",
+      "phone": "+1555777888",
+      "address": "258 Rue des Ormes, Laval, QC",
+      "registration_date": "2025-01-20T09:00:00Z",
+      "notes": "Nouveau client 2025",
+      "loyalty_points": 0,
+      "loyalty_level": "standard",
+      "loyalty_card_number": null,
+      "loyalty_registration_date": null,
+      "loyalty_history": []
+    },
+    {
+      "id": "C009",
+      "name": "Marie Leclerc",
+      "email": "marie.leclerc@email.com",
+      "phone": "+1666888999",
+      "address": "369 Boulevard Charest, Québec, QC",
+      "registration_date": "2025-02-10T14:30:00Z",
+      "notes": "Intéressée par les accessoires audio",
+      "loyalty_points": 0,
+      "loyalty_level": "standard",
+      "loyalty_card_number": null,
+      "loyalty_registration_date": null,
+      "loyalty_history": []
+    },
+    {
+      "id": "C393744",
+      "name": "Jihen b Y",
+      "email": "vivearoua@gmail.com",
+      "phone": "",
+      "address": "",
+      "registration_date": "2025-04-06T16:53:04.710Z",
+      "notes": "",
+      "loyalty_points": 0,
+      "loyalty_level": "standard",
+      "loyalty_card_number": null,
+      "loyalty_registration_date": null,
+      "loyalty_history": []
+    },
+    {
+      "id": "C802459",
+      "name": "aicha",
+      "email": "vivearoua@gmail.com",
+      "phone": "",
+      "address": "",
+      "registration_date": "2025-04-06T16:59:36.282Z",
+      "notes": "",
+      "loyalty_points": 0,
+      "loyalty_level": "standard",
+      "loyalty_card_number": null,
+      "loyalty_registration_date": null,
+      "loyalty_history": []
+    },
+    {
+      "id": "C227599",
+      "name": "aicha ar",
+      "email": "",
+      "phone": "",
+      "address": "",
+      "registration_date": "2025-04-06T17:06:57.442Z",
+      "notes": "",
+      "loyalty_points": 0,
+      "loyalty_level": "standard",
+      "loyalty_card_number": null,
+      "loyalty_registration_date": null,
+      "loyalty_history": []
+    },
+    {
+      "id": "C306563",
+      "name": "hcyc",
+      "email": "",
+      "phone": "",
+      "address": "",
+      "registration_date": "2025-04-06T17:08:20.314Z",
+      "notes": "",
+      "loyalty_points": 0,
+      "loyalty_level": "standard",
+      "loyalty_card_number": null,
+      "loyalty_registration_date": null,
+      "loyalty_history": []
+    },
+    {
+      "id": "C667911",
+      "name": "lion",
+      "email": "",
+      "phone": "",
+      "address": "",
+      "registration_date": "2025-04-06T17:14:21.702Z",
+      "notes": "",
+      "loyalty_points": 0,
+      "loyalty_level": "standard",
+      "loyalty_card_number": null,
+      "loyalty_registration_date": null,
+      "loyalty_history": []
+    },
+    {
+      "id": "C839901",
+      "name": "ufiufuf",
+      "email": "",
+      "phone": "",
+      "address": "",
+      "registration_date": "2025-04-06T17:17:14.719Z",
+      "notes": "",
+      "loyalty_points": 0,
+      "loyalty_level": "standard",
+      "loyalty_card_number": null,
+      "loyalty_registration_date": null,
+      "loyalty_history": []
+    }
+  ]
+}

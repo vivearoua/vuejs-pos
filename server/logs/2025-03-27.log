@@ -1,0 +1,1359 @@
+[2025-03-27T15:19:49.635Z] INFO: Serveur démarré sur le port 3001
+--------------------------------------------------
+[2025-03-27T15:20:09.408Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "user-agent": "Apidog/1.0.0 (https://apidog.com)",
+    "content-type": "text/plain",
+    "accept": "*/*",
+    "host": "localhost:3001",
+    "accept-encoding": "gzip, deflate, br",
+    "connection": "keep-alive",
+    "content-length": "559"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T15:20:09.413Z] INFO: Requête reçue pour ajouter une transaction
+--------------------------------------------------
+[2025-03-27T15:20:09.425Z] WARN: Données de transaction manquantes ou invalides
+--------------------------------------------------
+[2025-03-27T15:20:09.427Z] API_RESPONSE: POST /api/newtransaction - Status: 400 - Duration: 19ms
+Data: {"error":"Données de transaction manquantes ou invalides"}
+--------------------------------------------------
+[2025-03-27T15:23:26.835Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "user-agent": "Apidog/1.0.0 (https://apidog.com)",
+    "content-type": "application/json",
+    "accept": "*/*",
+    "host": "localhost:3001",
+    "accept-encoding": "gzip, deflate, br",
+    "connection": "keep-alive",
+    "content-length": "559"
+  },
+  "body": {
+    "id": "T999",
+    "user_id": "U002",
+    "client_id": "C001",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P002",
+        "quantity": 1,
+        "unit_price": 599.99
+      },
+      {
+        "item_type": "accessory",
+        "item_id": "A003",
+        "quantity": 2,
+        "unit_price": 29.99
+      }
+    ],
+    "total_amount": 659.97,
+    "discount": 10,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T15:15:00Z",
+    "customer_name": "Alice Brown"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T15:23:26.841Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T999",
+  "user_id": "U002",
+  "client_id": "C001",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P002",
+      "quantity": 1,
+      "unit_price": 599.99
+    },
+    {
+      "item_type": "accessory",
+      "item_id": "A003",
+      "quantity": 2,
+      "unit_price": 29.99
+    }
+  ],
+  "total_amount": 659.97,
+  "discount": 10,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T15:15:00Z",
+  "customer_name": "Alice Brown"
+}
+--------------------------------------------------
+[2025-03-27T15:23:26.844Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T999",
+  "user_id": "U002",
+  "client_id": "C001",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P002",
+      "quantity": 1,
+      "unit_price": 599.99
+    },
+    {
+      "item_type": "accessory",
+      "item_id": "A003",
+      "quantity": 2,
+      "unit_price": 29.99
+    }
+  ],
+  "total_amount": 659.97,
+  "discount": 10,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T15:15:00Z",
+  "customer_name": "Alice Brown"
+}
+--------------------------------------------------
+[2025-03-27T15:23:26.847Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "T999"
+}
+--------------------------------------------------
+[2025-03-27T15:23:26.848Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 13ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"}}
+--------------------------------------------------
+[2025-03-27T15:24:00.689Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "357",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "TR-1743089040681",
+    "user_id": "U002",
+    "client_id": "C004",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 1,
+        "unit_price": 799.99
+      },
+      {
+        "item_type": "phone",
+        "item_id": "P002",
+        "quantity": 1,
+        "unit_price": 1099.99
+      }
+    ],
+    "total_amount": 1899.98,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T15:24:00.681Z",
+    "customer_name": "David Kim"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T15:24:00.693Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "TR-1743089040681",
+  "user_id": "U002",
+  "client_id": "C004",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    },
+    {
+      "item_type": "phone",
+      "item_id": "P002",
+      "quantity": 1,
+      "unit_price": 1099.99
+    }
+  ],
+  "total_amount": 1899.98,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T15:24:00.681Z",
+  "customer_name": "David Kim"
+}
+--------------------------------------------------
+[2025-03-27T15:24:00.695Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "TR-1743089040681",
+  "user_id": "U002",
+  "client_id": "C004",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    },
+    {
+      "item_type": "phone",
+      "item_id": "P002",
+      "quantity": 1,
+      "unit_price": 1099.99
+    }
+  ],
+  "total_amount": 1899.98,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T15:24:00.681Z",
+  "customer_name": "David Kim"
+}
+--------------------------------------------------
+[2025-03-27T15:24:00.699Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "TR-1743089040681"
+}
+--------------------------------------------------
+[2025-03-27T15:24:00.700Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 11ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"}}
+--------------------------------------------------
+[2025-03-27T15:28:23.389Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "291",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "TR-1743089303386",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P002",
+        "quantity": 1,
+        "unit_price": 1099.99
+      }
+    ],
+    "total_amount": 1099.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T15:28:23.386Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T15:28:23.394Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "TR-1743089303386",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P002",
+      "quantity": 1,
+      "unit_price": 1099.99
+    }
+  ],
+  "total_amount": 1099.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T15:28:23.386Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T15:28:23.397Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "TR-1743089303386",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P002",
+      "quantity": 1,
+      "unit_price": 1099.99
+    }
+  ],
+  "total_amount": 1099.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T15:28:23.386Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T15:28:23.400Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "TR-1743089303386"
+}
+--------------------------------------------------
+[2025-03-27T15:28:23.401Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 12ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"}}
+--------------------------------------------------
+[2025-03-27T15:30:01.723Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "cache-control": "max-age=0",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "upgrade-insecure-requests": "1",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "sec-fetch-site": "none",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-user": "?1",
+    "sec-fetch-dest": "document",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"538-DV49uHE8ZjwUjashSaXrM2/wP70\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T15:30:01.726Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 3ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"}]
+--------------------------------------------------
+[2025-03-27T15:30:20.333Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "286",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "TR-1743089420328",
+    "user_id": "U002",
+    "client_id": "C002",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "accessory",
+        "item_id": "A003",
+        "quantity": 1,
+        "unit_price": 79.99
+      }
+    ],
+    "total_amount": 79.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T15:30:20.328Z",
+    "customer_name": "Bob Wilson"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T15:30:20.338Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "TR-1743089420328",
+  "user_id": "U002",
+  "client_id": "C002",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "accessory",
+      "item_id": "A003",
+      "quantity": 1,
+      "unit_price": 79.99
+    }
+  ],
+  "total_amount": 79.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T15:30:20.328Z",
+  "customer_name": "Bob Wilson"
+}
+--------------------------------------------------
+[2025-03-27T15:30:20.341Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "TR-1743089420328",
+  "user_id": "U002",
+  "client_id": "C002",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "accessory",
+      "item_id": "A003",
+      "quantity": 1,
+      "unit_price": 79.99
+    }
+  ],
+  "total_amount": 79.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T15:30:20.328Z",
+  "customer_name": "Bob Wilson"
+}
+--------------------------------------------------
+[2025-03-27T15:30:20.344Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "TR-1743089420328"
+}
+--------------------------------------------------
+[2025-03-27T15:30:20.345Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 12ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"}}
+--------------------------------------------------
+[2025-03-27T15:39:46.498Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "cache-control": "max-age=0",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "upgrade-insecure-requests": "1",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "sec-fetch-site": "none",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-user": "?1",
+    "sec-fetch-dest": "document",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"c7c-NQvOJ/WVHgyL0KsfpjdUv/+PDnE\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T15:39:46.503Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 5ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"}]
+--------------------------------------------------
+[2025-03-27T15:41:04.712Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "289",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "TR-1743090064706",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P003",
+        "quantity": 1,
+        "unit_price": 699.99
+      }
+    ],
+    "total_amount": 699.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T15:41:04.706Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T15:41:04.718Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "TR-1743090064706",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P003",
+      "quantity": 1,
+      "unit_price": 699.99
+    }
+  ],
+  "total_amount": 699.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T15:41:04.706Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T15:41:04.720Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "TR-1743090064706",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P003",
+      "quantity": 1,
+      "unit_price": 699.99
+    }
+  ],
+  "total_amount": 699.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T15:41:04.706Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T15:41:04.723Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "TR-1743090064706"
+}
+--------------------------------------------------
+[2025-03-27T15:41:04.724Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 12ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"}}
+--------------------------------------------------
+[2025-03-27T16:03:02.304Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "289",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "TR-1743091382296",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P003",
+        "quantity": 1,
+        "unit_price": 699.99
+      }
+    ],
+    "total_amount": 699.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T16:03:02.296Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T16:03:02.309Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "TR-1743091382296",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P003",
+      "quantity": 1,
+      "unit_price": 699.99
+    }
+  ],
+  "total_amount": 699.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:03:02.296Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:03:02.311Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "TR-1743091382296",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P003",
+      "quantity": 1,
+      "unit_price": 699.99
+    }
+  ],
+  "total_amount": 699.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:03:02.296Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:03:02.314Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "TR-1743091382296"
+}
+--------------------------------------------------
+[2025-03-27T16:03:02.315Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 11ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"}}
+--------------------------------------------------
+[2025-03-27T16:05:49.191Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "365",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "TR-1743091549188",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "accessory",
+        "item_id": "A004",
+        "quantity": 1,
+        "unit_price": 19.99
+      },
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 2,
+        "unit_price": 799.99
+      }
+    ],
+    "total_amount": 1619.97,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T16:05:49.188Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T16:05:49.196Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "TR-1743091549188",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "accessory",
+      "item_id": "A004",
+      "quantity": 1,
+      "unit_price": 19.99
+    },
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 2,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 1619.97,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:05:49.188Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:05:49.201Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "TR-1743091549188",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "accessory",
+      "item_id": "A004",
+      "quantity": 1,
+      "unit_price": 19.99
+    },
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 2,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 1619.97,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:05:49.188Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:05:49.203Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "TR-1743091549188"
+}
+--------------------------------------------------
+[2025-03-27T16:05:49.204Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 13ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"}}
+--------------------------------------------------
+[2025-03-27T16:05:58.319Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "cache-control": "max-age=0",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "upgrade-insecure-requests": "1",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "sec-fetch-site": "none",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-user": "?1",
+    "sec-fetch-dest": "document",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"d9b-XUcbQFpphCHp2wNgDRvZl6xws40\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T16:05:58.326Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 8ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"}]
+--------------------------------------------------
+[2025-03-27T16:07:17.418Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "289",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "TR-1743091637412",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P004",
+        "quantity": 1,
+        "unit_price": 849.99
+      }
+    ],
+    "total_amount": 849.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T16:07:17.412Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T16:07:17.423Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "TR-1743091637412",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P004",
+      "quantity": 1,
+      "unit_price": 849.99
+    }
+  ],
+  "total_amount": 849.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:07:17.412Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:07:17.427Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "TR-1743091637412",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P004",
+      "quantity": 1,
+      "unit_price": 849.99
+    }
+  ],
+  "total_amount": 849.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:07:17.412Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:07:17.429Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "TR-1743091637412"
+}
+--------------------------------------------------
+[2025-03-27T16:07:17.430Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 12ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"}}
+--------------------------------------------------
+[2025-03-27T16:09:58.935Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "289",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "TR-1743091798928",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 1,
+        "unit_price": 799.99
+      }
+    ],
+    "total_amount": 799.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T16:09:58.928Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T16:09:58.941Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "TR-1743091798928",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:09:58.928Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:09:58.943Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "TR-1743091798928",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:09:58.928Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:09:58.945Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "TR-1743091798928"
+}
+--------------------------------------------------
+[2025-03-27T16:09:58.946Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 11ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"}}
+--------------------------------------------------
+[2025-03-27T16:13:08.235Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "287",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1743091988228",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P003",
+        "quantity": 1,
+        "unit_price": 699.99
+      }
+    ],
+    "total_amount": 699.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T16:13:08.228Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T16:13:08.243Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1743091988228",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P003",
+      "quantity": 1,
+      "unit_price": 699.99
+    }
+  ],
+  "total_amount": 699.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:13:08.228Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:13:08.246Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1743091988228",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P003",
+      "quantity": 1,
+      "unit_price": 699.99
+    }
+  ],
+  "total_amount": 699.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:13:08.228Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:13:08.248Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "T1743091988228"
+}
+--------------------------------------------------
+[2025-03-27T16:13:08.249Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 14ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"}}
+--------------------------------------------------
+[2025-03-27T16:13:36.365Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "287",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1743092016361",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P003",
+        "quantity": 1,
+        "unit_price": 699.99
+      }
+    ],
+    "total_amount": 699.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T16:13:36.361Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T16:13:36.369Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1743092016361",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P003",
+      "quantity": 1,
+      "unit_price": 699.99
+    }
+  ],
+  "total_amount": 699.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:13:36.361Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:13:36.372Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1743092016361",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P003",
+      "quantity": 1,
+      "unit_price": 699.99
+    }
+  ],
+  "total_amount": 699.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:13:36.361Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:13:36.375Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "T1743092016361"
+}
+--------------------------------------------------
+[2025-03-27T16:13:36.377Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 12ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"}}
+--------------------------------------------------
+[2025-03-27T16:13:48.516Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "289",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1743092028510",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "accessory",
+        "item_id": "A001",
+        "quantity": 1,
+        "unit_price": 29.99
+      }
+    ],
+    "total_amount": 29.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T16:13:48.510Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T16:13:48.523Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1743092028510",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "accessory",
+      "item_id": "A001",
+      "quantity": 1,
+      "unit_price": 29.99
+    }
+  ],
+  "total_amount": 29.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:13:48.510Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:13:48.526Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1743092028510",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "accessory",
+      "item_id": "A001",
+      "quantity": 1,
+      "unit_price": 29.99
+    }
+  ],
+  "total_amount": 29.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:13:48.510Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:13:48.528Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "T1743092028510"
+}
+--------------------------------------------------
+[2025-03-27T16:13:48.530Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 14ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"}}
+--------------------------------------------------
+[2025-03-27T16:16:49.700Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "287",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1743092209579",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P003",
+        "quantity": 1,
+        "unit_price": 699.99
+      }
+    ],
+    "total_amount": 699.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-03-27T16:16:49.579Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-03-27T16:16:49.705Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1743092209579",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P003",
+      "quantity": 1,
+      "unit_price": 699.99
+    }
+  ],
+  "total_amount": 699.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:16:49.579Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:16:49.709Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1743092209579",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P003",
+      "quantity": 1,
+      "unit_price": 699.99
+    }
+  ],
+  "total_amount": 699.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-03-27T16:16:49.579Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-03-27T16:16:49.715Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "T1743092209579"
+}
+--------------------------------------------------
+[2025-03-27T16:16:49.716Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 16ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"}}
+--------------------------------------------------

@@ -1,0 +1,270 @@
+[2025-04-06T17:17:02.495Z] INFO: Serveur démarré sur le port 3001
+--------------------------------------------------
+[2025-04-06T17:17:19.940Z] API: POST /api/updateclients
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "2927",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "data": [
+      {
+        "id": "C000",
+        "name": "Client passager",
+        "email": null,
+        "phone": null,
+        "address": null,
+        "registration_date": null,
+        "notes": "Client anonyme ou de passage sans inscription"
+      },
+      {
+        "id": "C001",
+        "name": "Alice Brown",
+        "email": "alice.brown@email.com",
+        "phone": "+1444555666",
+        "address": "123 Rue Principale, Montréal, QC",
+        "registration_date": "2024-06-10T14:00:00Z",
+        "notes": "Client régulier, préfère les produits Samsung"
+      },
+      {
+        "id": "C002",
+        "name": "Bob Wilson",
+        "email": "bob.wilson@email.com",
+        "phone": "+1777888999",
+        "address": "456 Avenue des Pins, Québec, QC",
+        "registration_date": "2024-07-15T09:30:00Z",
+        "notes": "A souvent des réparations"
+      },
+      {
+        "id": "C003",
+        "name": "Clara Lee",
+        "email": "clara.lee@email.com",
+        "phone": "+1666777888",
+        "address": "789 Boulevard St-Laurent, Montréal, QC",
+        "registration_date": "2024-08-01T11:00:00Z",
+        "notes": "Fan de Google Pixel"
+      },
+      {
+        "id": "C004",
+        "name": "David Kim",
+        "email": "david.kim@email.com",
+        "phone": "+1888999000",
+        "address": "321 Rue Sherbrooke, Sherbrooke, QC",
+        "registration_date": "2024-09-10T13:00:00Z",
+        "notes": "Acheté plusieurs accessoires"
+      },
+      {
+        "id": "C005",
+        "name": "Emma Carter",
+        "email": "emma.carter@email.com",
+        "phone": "+1222333444",
+        "address": "654 Rue Ste-Catherine, Montréal, QC",
+        "registration_date": "2024-10-05T15:00:00Z",
+        "notes": "Client fidèle depuis 2024"
+      },
+      {
+        "id": "C006",
+        "name": "Liam Patel",
+        "email": "liam.patel@email.com",
+        "phone": "+1333444555",
+        "address": "987 Avenue Laurier, Québec, QC",
+        "registration_date": "2024-11-01T10:00:00Z",
+        "notes": "Préfère les paiements par carte"
+      },
+      {
+        "id": "C007",
+        "name": "Sophie Nguyen",
+        "email": "sophie.nguyen@email.com",
+        "phone": "+1444666777",
+        "address": "147 Rue Peel, Montréal, QC",
+        "registration_date": "2024-12-15T12:00:00Z",
+        "notes": "Aime les produits OnePlus"
+      },
+      {
+        "id": "C008",
+        "name": "Thomas Dupont",
+        "email": "thomas.dupont@email.com",
+        "phone": "+1555777888",
+        "address": "258 Rue des Ormes, Laval, QC",
+        "registration_date": "2025-01-20T09:00:00Z",
+        "notes": "Nouveau client 2025"
+      },
+      {
+        "id": "C009",
+        "name": "Marie Leclerc",
+        "email": "marie.leclerc@email.com",
+        "phone": "+1666888999",
+        "address": "369 Boulevard Charest, Québec, QC",
+        "registration_date": "2025-02-10T14:30:00Z",
+        "notes": "Intéressée par les accessoires audio"
+      },
+      {
+        "id": "C393744",
+        "name": "Jihen b Y",
+        "email": "vivearoua@gmail.com",
+        "phone": "",
+        "address": "",
+        "registration_date": "2025-04-06T16:53:04.710Z",
+        "notes": ""
+      },
+      {
+        "id": "C802459",
+        "name": "aicha",
+        "email": "vivearoua@gmail.com",
+        "phone": "",
+        "address": "",
+        "registration_date": "2025-04-06T16:59:36.282Z",
+        "notes": ""
+      },
+      {
+        "id": "C227599",
+        "name": "aicha ar",
+        "email": "",
+        "phone": "",
+        "address": "",
+        "registration_date": "2025-04-06T17:06:57.442Z",
+        "notes": ""
+      },
+      {
+        "id": "C306563",
+        "name": "hcyc",
+        "email": "",
+        "phone": "",
+        "address": "",
+        "registration_date": "2025-04-06T17:08:20.314Z",
+        "notes": ""
+      },
+      {
+        "id": "C667911",
+        "name": "lion",
+        "email": "",
+        "phone": "",
+        "address": "",
+        "registration_date": "2025-04-06T17:14:21.702Z",
+        "notes": ""
+      },
+      {
+        "id": "C839901",
+        "name": "ufiufuf",
+        "email": "",
+        "phone": "",
+        "address": "",
+        "registration_date": "2025-04-06T17:17:14.719Z",
+        "notes": ""
+      }
+    ]
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-06T17:17:19.942Z] API_RESPONSE: POST /api/updateclients - Status: 200 - Duration: 2ms
+Data: {"success":true,"message":"Clients mis à jour avec succès"}
+--------------------------------------------------
+[2025-04-06T17:43:17.746Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "289",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1743961397633",
+    "user_id": "U002",
+    "client_id": "C001",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "accessory",
+        "item_id": "A001",
+        "quantity": 1,
+        "unit_price": 29.99
+      }
+    ],
+    "total_amount": 29.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-04-06T17:43:17.633Z",
+    "customer_name": "Client Passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-06T17:43:17.747Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1743961397633",
+  "user_id": "U002",
+  "client_id": "C001",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "accessory",
+      "item_id": "A001",
+      "quantity": 1,
+      "unit_price": 29.99
+    }
+  ],
+  "total_amount": 29.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-06T17:43:17.633Z",
+  "customer_name": "Client Passager"
+}
+--------------------------------------------------
+[2025-04-06T17:43:17.747Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1743961397633",
+  "user_id": "U002",
+  "client_id": "C001",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "accessory",
+      "item_id": "A001",
+      "quantity": 1,
+      "unit_price": 29.99
+    }
+  ],
+  "total_amount": 29.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-06T17:43:17.633Z",
+  "customer_name": "Client Passager"
+}
+--------------------------------------------------
+[2025-04-06T17:43:17.748Z] INFO: Transaction ajoutée avec succès
+Data: {
+  "id": "T1743961397633"
+}
+--------------------------------------------------
+[2025-04-06T17:43:17.749Z] API_RESPONSE: POST /api/newtransaction - Status: 201 - Duration: 3ms
+Data: {"message":"Transaction ajoutée avec succès","transaction":{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}}
+--------------------------------------------------

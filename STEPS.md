@@ -85,22 +85,22 @@ Ce fichier contiendra la liste des tâches à réaliser pour le développement d
 ## Prochaines Étapes
 1. [x] Système de paiement
    - [x] Interface de paiement
-   - [x] Gestion des transactions
+   - [] Gestion des transactions
    - [x] Notifications de succès
-2. [x] Gestion des stocks
-   - [x] Service d'inventaire
-   - [x] Interface utilisateur
-   - [x] Mouvements de stock
+2. [ ] Gestion des stocks
+   - [ ] Service d'inventaire
+   - [ ] Interface utilisateur
+   - [ ] Mouvements de stock
 3. [x] Gestion des clients
    - [x] Service client
    - [x] Interface de gestion
    - [x] Historique des achats
    - [ ] Programme de fidélité
-4. [x] Module de réparations
-   - [x] Suivi des réparations
-   - [x] Devis et factures
-   - [x] États des réparations
-   - [x] Notifications
+4. [ ] Module de réparations
+   - [ ] Suivi des réparations
+   - [ ] Devis et factures
+   - [ ] États des réparations
+   - [ ] Notifications
 5. [ ] Rapports et analyses
 
 ## Notes Techniques

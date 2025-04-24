@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
-import storeData from '../data/store.json';
-import { Phone, Accessory } from '../types';
 import { Search, Filter } from 'lucide-react';
 import { logger } from '../utils/logger';
 import ErrorBoundary from './ErrorBoundary';
+import { inventoryService } from '../services/inventoryService';
 
 type ProductType = 'all' | 'phone' | 'accessory';
 
@@ -13,32 +12,60 @@ function ProductsContent() {
   const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState<ProductType>('all');
 
-  const phones: Phone[] = storeData.phones;
-  const accessories: Accessory[] = storeData.accessories;
+  const [products, setProducts] = useState<any[]>([]);
+  
+  // Charger les produits depuis le service d'inventaire
+  useEffect(() => {
+    const loadProducts = () => {
+      const allProducts = inventoryService.getAllProducts();
+      setProducts(allProducts);
+    };
+    
+    loadProducts();
+    
+    // S'abonner aux mises à jour du stock
+    const unsubscribe = inventoryService.subscribe((type, _data) => {
+      if (['product_updated', 'stock_decreased'].includes(type)) {
+        // Recharger les produits lorsque le stock est mis à jour
+        loadProducts();
+      }
+    });
+    
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
-    logger.info('Products page mounted', {
-      totalPhones: phones.length,
-      totalAccessories: accessories.length
-    });
-  }, [phones.length, accessories.length]);
+    if (products.length > 0) {
+      const phones = products.filter(p => p.type === 'phone');
+      const accessories = products.filter(p => p.type === 'accessory');
+      
+      logger.info('Products page mounted', {
+        totalPhones: phones.length,
+        totalAccessories: accessories.length
+      });
+    }
+  }, [products]);
 
   const matchesCategory = (product: { type: 'phone' | 'accessory' }) => {
     if (category === 'all') return true;
     return product.type === category;
   };
 
-  const filteredProducts = [...phones.map(phone => ({
-    ...phone,
-    type: 'phone' as const,
-    displayName: `${phone.brand} ${phone.model}`,
-    details: `${phone.storage} - ${phone.color}`
-  })), ...accessories.map(acc => ({
-    ...acc,
-    type: 'accessory' as const,
-    displayName: acc.name,
-    details: acc.brand
-  }))].filter(product => {
+  const filteredProducts = products.map(product => {
+    if (product.type === 'phone') {
+      return {
+        ...product,
+        displayName: `${product.brand} ${product.model}`,
+        details: `${product.storage} - ${product.color}`
+      };
+    } else {
+      return {
+        ...product,
+        displayName: product.name,
+        details: product.brand
+      };
+    }
+  }).filter(product => {
     const matchesSearch = product.displayName.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesSearch && matchesCategory(product);
   });
