@@ -8,9 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "node server.js",
+    "server": "node server/server.js",
     "dev:all": "concurrently \"npm run dev\" \"npm run server\"",
-    "server:prod": "set NODE_ENV=production && node server.js"
+    "server:prod": "set NODE_ENV=production && node server/server.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.7",

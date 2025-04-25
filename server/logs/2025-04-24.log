@@ -1,0 +1,1265 @@
+[2025-04-24T14:56:44.430Z] INFO: Serveur démarré sur le port 3001
+--------------------------------------------------
+[2025-04-24T14:56:53.015Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T14:56:53.017Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 2ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T14:56:53.023Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T14:56:53.024Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 1ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T14:57:24.105Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "287",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1745506643950",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 1,
+        "unit_price": 799.99
+      }
+    ],
+    "total_amount": 799.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-04-24T14:57:23.950Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T14:57:24.107Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1745506643950",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T14:57:23.950Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T14:57:24.109Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1745506643950",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T14:57:23.950Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T14:57:24.110Z] INFO: Mise à jour du stock pour la transaction
+Data: {
+  "id": "T1745506643950"
+}
+--------------------------------------------------
+[2025-04-24T14:57:24.110Z] ERROR: Erreur lors de l'ajout de la transaction
+Data: {}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T14:57:24.115Z] API_RESPONSE: POST /api/newtransaction - Status: 500 - Duration: 10ms
+Data: {"error":"Erreur serveur lors de l'ajout de la transaction","details":"Cannot access 'productArray' before initialization"}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T15:13:01.400Z] INFO: Serveur démarré sur le port 3001
+--------------------------------------------------
+[2025-04-24T15:13:55.613Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T15:13:55.619Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 6ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T15:13:55.638Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T15:13:55.640Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 3ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T15:14:09.357Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "287",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1745507649234",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 1,
+        "unit_price": 799.99
+      }
+    ],
+    "total_amount": 799.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-04-24T15:14:09.234Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T15:14:09.360Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1745507649234",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T15:14:09.234Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T15:14:09.361Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1745507649234",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T15:14:09.234Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T15:14:09.362Z] INFO: Mise à jour du stock pour la transaction
+Data: {
+  "id": "T1745507649234"
+}
+--------------------------------------------------
+[2025-04-24T15:14:09.363Z] INFO: Stock AVANT vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "stock_avant": 25,
+  "quantity_vendue": 1
+}
+--------------------------------------------------
+[2025-04-24T15:14:09.364Z] INFO: Stock APRES vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "nouveau_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T15:14:09.365Z] INFO: Stock mis à jour pour le produit
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "new_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T15:14:09.366Z] ERROR: Erreur lors de l'ajout de la transaction
+Data: {}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T15:14:09.369Z] API_RESPONSE: POST /api/newtransaction - Status: 500 - Duration: 12ms
+Data: {"error":"Erreur serveur lors de l'ajout de la transaction","details":"productIndex is not defined"}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T15:17:32.696Z] API: GET /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "upgrade-insecure-requests": "1",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "sec-fetch-site": "none",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-user": "?1",
+    "sec-fetch-dest": "document",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:31:28.381Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "user-agent": "Apidog/1.0.0 (https://apidog.com)",
+    "content-type": "application/json",
+    "accept": "*/*",
+    "host": "localhost:3001",
+    "accept-encoding": "gzip, deflate, br",
+    "connection": "keep-alive",
+    "content-length": "287"
+  },
+  "body": {
+    "id": "T1745507649234",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 1,
+        "unit_price": 799.99
+      }
+    ],
+    "total_amount": 799.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-04-24T15:14:09.234Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:31:28.383Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1745507649234",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T15:14:09.234Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:31:28.387Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1745507649234",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T15:14:09.234Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:31:28.389Z] INFO: Mise à jour du stock pour la transaction
+Data: {
+  "id": "T1745507649234"
+}
+--------------------------------------------------
+[2025-04-24T18:31:28.390Z] INFO: Stock AVANT vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "stock_avant": 25,
+  "quantity_vendue": 1
+}
+--------------------------------------------------
+[2025-04-24T18:31:28.390Z] INFO: Stock APRES vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "nouveau_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:31:28.391Z] INFO: Stock mis à jour pour le produit
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "new_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:31:28.392Z] ERROR: Erreur lors de l'ajout de la transaction
+Data: {}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:31:28.393Z] API_RESPONSE: POST /api/newtransaction - Status: 500 - Duration: 12ms
+Data: {"error":"Erreur serveur lors de l'ajout de la transaction","details":"productIndex is not defined"}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:32:47.757Z] INFO: Serveur démarré sur le port 3001
+--------------------------------------------------
+[2025-04-24T18:32:56.890Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:32:56.892Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 2ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T18:32:56.900Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:32:56.902Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 2ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T18:33:16.398Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "287",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1745519596257",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 1,
+        "unit_price": 799.99
+      }
+    ],
+    "total_amount": 799.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-04-24T18:33:16.257Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:33:16.398Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1745519596257",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T18:33:16.257Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:33:16.399Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1745519596257",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T18:33:16.257Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:33:16.399Z] INFO: Mise à jour du stock pour la transaction
+Data: {
+  "id": "T1745519596257"
+}
+--------------------------------------------------
+[2025-04-24T18:33:16.399Z] INFO: Stock AVANT vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "stock_avant": 25,
+  "quantity_vendue": 1
+}
+--------------------------------------------------
+[2025-04-24T18:33:16.399Z] INFO: Stock APRES vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "nouveau_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:33:16.399Z] INFO: Stock mis à jour pour le produit
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "new_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:33:16.399Z] ERROR: Erreur lors de l'ajout de la transaction
+Data: {}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:33:16.401Z] API_RESPONSE: POST /api/newtransaction - Status: 500 - Duration: 3ms
+Data: {"error":"Erreur serveur lors de l'ajout de la transaction","details":"productIndex is not defined"}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:35:40.171Z] INFO: Serveur démarré sur le port 3001
+--------------------------------------------------
+[2025-04-24T18:35:47.107Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:35:47.108Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 1ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T18:35:47.114Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:35:47.115Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 1ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T18:36:03.564Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "287",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1745519763457",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 1,
+        "unit_price": 799.99
+      }
+    ],
+    "total_amount": 799.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-04-24T18:36:03.457Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:36:03.564Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1745519763457",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T18:36:03.457Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:36:03.564Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1745519763457",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T18:36:03.457Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:36:03.565Z] INFO: Mise à jour du stock pour la transaction
+Data: {
+  "id": "T1745519763457"
+}
+--------------------------------------------------
+[2025-04-24T18:36:03.565Z] INFO: Stock AVANT vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "stock_avant": 25,
+  "quantity_vendue": 1
+}
+--------------------------------------------------
+[2025-04-24T18:36:03.565Z] INFO: Stock APRES vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "nouveau_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:36:03.565Z] INFO: Stock mis à jour pour le produit
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "new_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:36:03.565Z] ERROR: Erreur lors de l'ajout de la transaction
+Data: {}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:36:03.566Z] API_RESPONSE: POST /api/newtransaction - Status: 500 - Duration: 2ms
+Data: {"error":"Erreur serveur lors de l'ajout de la transaction","details":"productIndex is not defined"}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:39:33.713Z] INFO: Serveur démarré sur le port 3001
+--------------------------------------------------
+[2025-04-24T18:39:40.617Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:39:40.619Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 2ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T18:39:40.628Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:39:40.629Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 1ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T18:39:49.624Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "287",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1745519989504",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 1,
+        "unit_price": 799.99
+      }
+    ],
+    "total_amount": 799.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-04-24T18:39:49.504Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:39:49.624Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1745519989504",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T18:39:49.504Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:39:49.625Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1745519989504",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T18:39:49.504Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:39:49.625Z] INFO: Mise à jour du stock pour la transaction
+Data: {
+  "id": "T1745519989504"
+}
+--------------------------------------------------
+[2025-04-24T18:39:49.625Z] INFO: Stock AVANT vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "stock_avant": 25,
+  "quantity_vendue": 1
+}
+--------------------------------------------------
+[2025-04-24T18:39:49.625Z] INFO: Stock APRES vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "nouveau_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:39:49.625Z] INFO: Stock mis à jour pour le produit
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "new_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:39:49.625Z] ERROR: Erreur lors de l'ajout de la transaction
+Data: {}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:39:49.626Z] API_RESPONSE: POST /api/newtransaction - Status: 500 - Duration: 2ms
+Data: {"error":"Erreur serveur lors de l'ajout de la transaction","details":"productIndex is not defined"}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:52:12.556Z] INFO: Serveur démarré sur le port 3001
+--------------------------------------------------
+[2025-04-24T18:52:17.955Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:52:17.957Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 2ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T18:52:17.966Z] API: GET /api/transactions
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "if-none-match": "W/\"1935-rPmb27uid2zgbsUtnT5VOCT8GM8\""
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:52:17.967Z] API_RESPONSE: GET /api/transactions - Status: 200 - Duration: 0ms
+Data: [{"id":"T001","user_id":"U002","client_id":"C005","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99},{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99}],"total_amount":849.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-25T15:30:00Z","customer_name":"Emma Carter"},{"id":"T002","user_id":"U003","client_id":"C006","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99},{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":779.98,"discount":0,"payment_method":"Debit Card","timestamp":"2025-03-26T10:15:00Z","customer_name":"Liam Patel"},{"id":"T003","user_id":"U002","client_id":"C002","type":"repair","repair_id":"R002","total_amount":80,"discount":0,"payment_method":"Cash","timestamp":"2025-03-18T12:30:00Z","customer_name":"Bob Wilson"},{"id":"T004","user_id":"U003","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99},{"item_type":"accessory","item_id":"A002","quantity":2,"unit_price":24.99}],"total_amount":899.97,"discount":0,"payment_method":"Credit Card","timestamp":"2025-03-26T11:00:00Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743087542202","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T14:59:02.202Z","customer_name":"Alice Brown"},{"id":"TR-1743087956227","user_id":"U002","client_id":"C007","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:05:56.228Z","customer_name":"Sophie Nguyen"},{"id":"TR-1743088153804","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:09:13.804Z","customer_name":"Client passager"},{"id":"T999","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":599.99},{"item_type":"accessory","item_id":"A003","quantity":2,"unit_price":29.99}],"total_amount":659.97,"discount":10,"payment_method":"Cash","timestamp":"2025-03-27T15:15:00Z","customer_name":"Alice Brown"},{"id":"TR-1743089040681","user_id":"U002","client_id":"C004","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99},{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1899.98,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:24:00.681Z","customer_name":"David Kim"},{"id":"TR-1743089303386","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P002","quantity":1,"unit_price":1099.99}],"total_amount":1099.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:28:23.386Z","customer_name":"Client passager"},{"id":"TR-1743089420328","user_id":"U002","client_id":"C002","type":"sale","items":[{"item_type":"accessory","item_id":"A003","quantity":1,"unit_price":79.99}],"total_amount":79.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:30:20.328Z","customer_name":"Bob Wilson"},{"id":"TR-1743090064706","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T15:41:04.706Z","customer_name":"Client passager"},{"id":"TR-1743091382296","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:03:02.296Z","customer_name":"Client passager"},{"id":"TR-1743091549188","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A004","quantity":1,"unit_price":19.99},{"item_type":"phone","item_id":"P001","quantity":2,"unit_price":799.99}],"total_amount":1619.97,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:05:49.188Z","customer_name":"Client passager"},{"id":"TR-1743091637412","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P004","quantity":1,"unit_price":849.99}],"total_amount":849.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:07:17.412Z","customer_name":"Client passager"},{"id":"TR-1743091798928","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P001","quantity":1,"unit_price":799.99}],"total_amount":799.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:09:58.928Z","customer_name":"Client passager"},{"id":"T1743091988228","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:08.228Z","customer_name":"Client passager"},{"id":"T1743092016361","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:36.361Z","customer_name":"Client passager"},{"id":"T1743092028510","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:13:48.510Z","customer_name":"Client passager"},{"id":"T1743092209579","user_id":"U002","client_id":"C000","type":"sale","items":[{"item_type":"phone","item_id":"P003","quantity":1,"unit_price":699.99}],"total_amount":699.99,"discount":0,"payment_method":"Cash","timestamp":"2025-03-27T16:16:49.579Z","customer_name":"Client passager"},{"id":"T1743961397633","user_id":"U002","client_id":"C001","type":"sale","items":[{"item_type":"accessory","item_id":"A001","quantity":1,"unit_price":29.99}],"total_amount":29.99,"discount":0,"payment_method":"Cash","timestamp":"2025-04-06T17:43:17.633Z","customer_name":"Client Passager"}]
+--------------------------------------------------
+[2025-04-24T18:52:27.735Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "user-agent": "Apidog/1.0.0 (https://apidog.com)",
+    "content-type": "application/json",
+    "accept": "*/*",
+    "host": "localhost:3001",
+    "accept-encoding": "gzip, deflate, br",
+    "connection": "keep-alive",
+    "content-length": "287"
+  },
+  "body": {
+    "id": "T1745507649234",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 1,
+        "unit_price": 799.99
+      }
+    ],
+    "total_amount": 799.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-04-24T15:14:09.234Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:52:27.736Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1745507649234",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T15:14:09.234Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:52:27.738Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1745507649234",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T15:14:09.234Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:52:27.738Z] INFO: Mise à jour du stock pour la transaction
+Data: {
+  "id": "T1745507649234"
+}
+--------------------------------------------------
+[2025-04-24T18:52:27.739Z] INFO: Stock AVANT vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "stock_avant": 25,
+  "quantity_vendue": 1
+}
+--------------------------------------------------
+[2025-04-24T18:52:27.739Z] INFO: Stock APRES vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "nouveau_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:52:27.739Z] INFO: Stock mis à jour pour le produit
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "new_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:52:27.739Z] ERROR: Erreur lors de l'ajout de la transaction
+Data: {}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:52:27.741Z] API_RESPONSE: POST /api/newtransaction - Status: 500 - Duration: 6ms
+Data: {"error":"Erreur serveur lors de l'ajout de la transaction","details":"productArray is not defined"}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:52:46.243Z] API: POST /api/newtransaction
+Data: {
+  "headers": {
+    "host": "localhost:3001",
+    "connection": "keep-alive",
+    "content-length": "287",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    "content-type": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "origin": "http://localhost:5173",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:5173/",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+  },
+  "body": {
+    "id": "T1745520766126",
+    "user_id": "U002",
+    "client_id": "C000",
+    "type": "sale",
+    "items": [
+      {
+        "item_type": "phone",
+        "item_id": "P001",
+        "quantity": 1,
+        "unit_price": 799.99
+      }
+    ],
+    "total_amount": 799.99,
+    "discount": 0,
+    "payment_method": "Cash",
+    "timestamp": "2025-04-24T18:52:46.126Z",
+    "customer_name": "Client passager"
+  },
+  "params": {},
+  "query": {}
+}
+--------------------------------------------------
+[2025-04-24T18:52:46.243Z] INFO: Requête reçue pour ajouter une transaction
+Data: {
+  "id": "T1745520766126",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T18:52:46.126Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:52:46.244Z] INFO: Transaction validée, ajout à store.json
+Data: {
+  "id": "T1745520766126",
+  "user_id": "U002",
+  "client_id": "C000",
+  "type": "sale",
+  "items": [
+    {
+      "item_type": "phone",
+      "item_id": "P001",
+      "quantity": 1,
+      "unit_price": 799.99
+    }
+  ],
+  "total_amount": 799.99,
+  "discount": 0,
+  "payment_method": "Cash",
+  "timestamp": "2025-04-24T18:52:46.126Z",
+  "customer_name": "Client passager"
+}
+--------------------------------------------------
+[2025-04-24T18:52:46.244Z] INFO: Mise à jour du stock pour la transaction
+Data: {
+  "id": "T1745520766126"
+}
+--------------------------------------------------
+[2025-04-24T18:52:46.244Z] INFO: Stock AVANT vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "stock_avant": 25,
+  "quantity_vendue": 1
+}
+--------------------------------------------------
+[2025-04-24T18:52:46.244Z] INFO: Stock APRES vente
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "nouveau_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:52:46.244Z] INFO: Stock mis à jour pour le produit
+Data: {
+  "product_id": "P001",
+  "product_type": "phone",
+  "new_stock": 24
+}
+--------------------------------------------------
+[2025-04-24T18:52:46.244Z] ERROR: Erreur lors de l'ajout de la transaction
+Data: {}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log
+[2025-04-24T18:52:46.245Z] API_RESPONSE: POST /api/newtransaction - Status: 500 - Duration: 2ms
+Data: {"error":"Erreur serveur lors de l'ajout de la transaction","details":"productArray is not defined"}
+--------------------------------------------------
+[LOGGER] Flush effectué dans : C:\localmachine\vuejs-pos\server\logs\2025-04-24.log

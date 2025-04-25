@@ -357,8 +357,11 @@ app.post('/api/newtransaction', (req, res) => {
   try {
     logger.info('Requête reçue pour ajouter une transaction', req.body);
     
-    // Lire le fichier store.json
+    // Lire le fichier store.json pour les transactions
     const storeData = JSON.parse(fs.readFileSync(storeFilePath, 'utf8'));
+    
+    // Lire le fichier productsdb.json pour les produits
+    const productsData = JSON.parse(fs.readFileSync(productsDbPath, 'utf8'));
     
     // Récupérer les données de la transaction depuis la requête
     let transaction = req.body;
@@ -450,8 +453,14 @@ app.post('/api/newtransaction', (req, res) => {
       // Pour chaque article vendu, diminuer le stock
       transaction.items.forEach(item => {
         const { item_type, item_id, quantity } = item;
-        
-        // Trouver le produit dans le stock
+        // Initialiser productArray AVANT toute utilisation
+        let productArray = [];
+        if (item_type === 'phone') {
+          productArray = productsData.phones;
+        } else if (item_type === 'accessory') {
+          productArray = productsData.accessories;
+        }
+        // Maintenant, productArray est bien initialisé
         if (productArray && productArray.length > 0) {
           const productIndex = productArray.findIndex(p => p.id === item_id);
           if (productIndex !== -1) {
@@ -462,74 +471,57 @@ app.post('/api/newtransaction', (req, res) => {
               stock_avant: product.stock,
               quantity_vendue: quantity
             });
-          }
-        }
-        let productArray = [];
-        if (item_type === 'phone') {
-          productArray = storeData.phones;
-        } else if (item_type === 'accessory') {
-          productArray = storeData.accessories;
-        }
-        
-        const productIndex = productArray.findIndex(p => p.id === item_id);
-        if (productIndex !== -1) {
-          const product = productArray[productIndex];
-          
-          // Vérifier que le stock est suffisant
-          if (product.stock < quantity) {
-            logger.warn('Stock insuffisant pour le produit', {
+            // Vérifier que le stock est suffisant
+            if (product.stock < quantity) {
+              logger.warn('Stock insuffisant pour le produit', {
+                product_id: item_id,
+                product_type: item_type,
+                available: product.stock,
+                requested: quantity
+              });
+              // Mettre à jour avec le stock disponible
+              productArray[productIndex].stock = 0;
+            } else {
+              // Diminuer le stock
+              productArray[productIndex].stock -= quantity;
+              logger.info('Stock APRES vente', {
+                product_id: item_id,
+                product_type: item_type,
+                nouveau_stock: productArray[productIndex].stock
+              });
+            }
+            logger.info('Stock mis à jour pour le produit', {
               product_id: item_id,
               product_type: item_type,
-              available: product.stock,
-              requested: quantity
+              new_stock: productArray[productIndex].stock
             });
-            // Mettre à jour avec le stock disponible
-            productArray[productIndex].stock = 0;
           } else {
-            // Diminuer le stock
-            productArray[productIndex].stock -= quantity;
-            logger.info('Stock APRES vente', {
+            logger.warn('Produit non trouvé dans le stock', {
               product_id: item_id,
-              product_type: item_type,
-              nouveau_stock: productArray[productIndex].stock
+              product_type: item_type
             });
           }
-          
-          logger.info('Stock mis à jour pour le produit', {
-            product_id: item_id,
-            product_type: item_type,
-            new_stock: productArray[productIndex].stock
-          });
-        } else {
-          logger.warn('Produit non trouvé dans le stock', {
-            product_id: item_id,
-            product_type: item_type
-          });
         }
       });
     }
-    
-    // Ajouter la transaction aux données existantes
+// Ajouter la transaction aux données existantes
     storeData.transactions.push(transaction);
-    
-    // Écrire les données mises à jour dans le fichier
+    // Écrire les données mises à jour dans le fichier store.json pour les transactions
     fs.writeFileSync(storeFilePath, JSON.stringify(storeData, null, 2));
     
+    // Écrire les données mises à jour dans le fichier productsdb.json pour les produits
+    fs.writeFileSync(productsDbPath, JSON.stringify(productsData, null, 2));
     logger.info('Transaction ajoutée avec succès', { id: transaction.id });
-    
     // Forcer l'écriture des logs dans le fichier
     logger.flush();
-    
     res.status(201).json({ 
       message: 'Transaction ajoutée avec succès',
       transaction: transaction
     });
   } catch (error) {
     logger.error('Erreur lors de l\'ajout de la transaction', error);
-    
     // Forcer l'écriture des logs dans le fichier en cas d'erreur
     logger.flush();
-    
     res.status(500).json({ 
       error: 'Erreur serveur lors de l\'ajout de la transaction',
       details: error.message,
@@ -537,7 +529,6 @@ app.post('/api/newtransaction', (req, res) => {
     });
   }
 });
-
 // Route pour mettre à jour des sections spécifiques du fichier store.json
 app.post('/api/updatestore', (req, res) => {
   try {

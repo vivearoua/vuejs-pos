@@ -45,6 +45,9 @@ class InventoryService {
     // Si aucun produit n'est chargé, initialiser avec les données de productsdb.json
     if (this.products.length === 0) {
       this.initializeFromProductsData();
+    } else {
+      // Synchroniser avec le fichier productsdb.json au démarrage
+      this.syncWithProductsJson();
     }
   }
 
@@ -61,6 +64,7 @@ class InventoryService {
 
     if (savedProducts) {
       this.products = JSON.parse(savedProducts);
+      console.log('Produits chargés depuis localStorage:', this.products.length);
     }
 
     if (savedMovements) {
@@ -74,15 +78,27 @@ class InventoryService {
     
     // Synchroniser avec le fichier productsdb.json
     this.updateProductsJson();
+    console.log('Produits sauvegardés dans localStorage et synchronisés avec productsdb.json');
   }
   
+  /**
+   * Synchronise les produits du localStorage avec productsdb.json
+   * Cette méthode est appelée au démarrage et après chaque modification des produits
+   */
+  public syncWithProductsJson(): void {
+    // Appeler updateProductsJson pour envoyer les données au serveur
+    this.updateProductsJson();
+    
+    // Planifier une synchronisation périodique (toutes les 5 minutes)
+    setTimeout(() => this.syncWithProductsJson(), 5 * 60 * 1000);
+  }
+  
+  /**
+   * Met à jour le fichier productsdb.json avec les données actuelles des produits
+   */
   private updateProductsJson(): void {
     (async () => {
       try {
-        // Charger le fichier productsdb.json
-        const productsData = await import('../data/productsdb.json');
-        const data = productsData.default || productsData;
-        
         // Séparer les produits par type
         const phones: any[] = [];
         const accessories: any[] = [];
@@ -114,12 +130,8 @@ class InventoryService {
           }
         });
         
-        // Mettre à jour les données
-        data.phones = phones;
-        data.accessories = accessories;
-        
         // Envoyer les données mises à jour au serveur
-        fetch(`${import.meta.env.VITE_API_URL}/updateproducts`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/updateproducts`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -130,17 +142,19 @@ class InventoryService {
               accessories
             }
           }),
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Failed to update productsdb.json');
-          }
-          return response.json();
-        })
-        .then(data => console.log('productsdb.json updated successfully:', data))
-        .catch(error => console.error('Error updating productsdb.json:', error));
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Erreur lors de la mise à jour de productsdb.json: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log('productsdb.json mis à jour avec succès:', result);
       } catch (error) {
-        console.error('Error preparing data for productsdb.json update:', error);
+        console.error('Erreur lors de la mise à jour de productsdb.json:', error);
+        
+        // En cas d'échec, réessayer après un délai
+        setTimeout(() => this.updateProductsJson(), 30000); // Réessayer après 30 secondes
       }
     })();
   }
@@ -411,11 +425,20 @@ class InventoryService {
     return lines.join('\n');
   }
 
+  /**
+   * Initialise les produits à partir du fichier productsdb.json
+   * Cette méthode est appelée au démarrage si aucun produit n'est trouvé dans le localStorage
+   */
   private async initializeFromProductsData(): Promise<void> {
     try {
-      // Charger le fichier productsdb.json directement comme module
-      const productsData = await import('../data/productsdb.json');
-      const data = productsData.default || productsData;
+      // Récupérer les données depuis l'API plutôt que d'importer le fichier directement
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/products`);
+      
+      if (!response.ok) {
+        throw new Error(`Erreur lors de la récupération des produits: ${response.status}`);
+      }
+      
+      const data = await response.json();
       
       // Convertir les téléphones au format de notre application
       const phones: Product[] = data.phones.map((phone: any) => ({
@@ -449,9 +472,51 @@ class InventoryService {
       // Combiner les produits et les sauvegarder
       this.products = [...phones, ...accessories];
       this.saveToStorage();
-      console.log('Produits initialisés depuis productsdb.json:', this.products.length);
+      console.log('Produits initialisés depuis productsdb.json via API:', this.products.length);
     } catch (error) {
       console.error('Erreur lors du chargement des données de productsdb.json:', error);
+      
+      // En cas d'échec de l'API, essayer de charger directement le fichier comme fallback
+      try {
+        const productsData = await import('../data/productsdb.json');
+        const data = productsData.default || productsData;
+        
+        // Convertir les téléphones au format de notre application
+        const phones: Product[] = data.phones.map((phone: any) => ({
+          id: phone.id,
+          type: 'phone',
+          brand: phone.brand,
+          model: phone.model,
+          storage: phone.storage,
+          color: phone.color,
+          price: phone.price,
+          stock: phone.stock,
+          minStock: 5, // Valeur par défaut
+          lastUpdated: phone.added_date,
+          imageUrl: phone.imageUrl || ''
+        }));
+        
+        // Convertir les accessoires au format de notre application
+        const accessories: Product[] = data.accessories.map((accessory: any) => ({
+          id: accessory.id,
+          type: 'accessory',
+          name: accessory.name,
+          brand: accessory.brand,
+          price: accessory.price,
+          stock: accessory.stock,
+          minStock: 10, // Valeur par défaut
+          compatible_with: accessory.compatible_with,
+          lastUpdated: accessory.added_date,
+          imageUrl: accessory.imageUrl || ''
+        }));
+        
+        // Combiner les produits et les sauvegarder
+        this.products = [...phones, ...accessories];
+        this.saveToStorage();
+        console.log('Produits initialisés depuis productsdb.json (fallback local):', this.products.length);
+      } catch (fallbackError) {
+        console.error('Échec du fallback local pour productsdb.json:', fallbackError);
+      }
     }
   }
 }

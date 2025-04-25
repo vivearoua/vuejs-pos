@@ -1,6 +1,5 @@
 import { PaymentDetails } from '../components/PaymentModal';
 import { inventoryService } from './inventoryService';
-import storeData from '../data/store.json';
 
 export interface CartItem {
   id: string;
@@ -71,12 +70,23 @@ class TransactionService {
       this.transactions = JSON.parse(savedTransactions);
     }
     
-    // Charger les transactions depuis store.json
+    // Initialiser le tableau de transactions du store
+    this.storeTransactions = [];
+    
+    // Charger les transactions depuis l'API
+    this.fetchTransactionsFromAPI();
+  }
+  
+  private async fetchTransactionsFromAPI(): Promise<void> {
     try {
-      this.storeTransactions = storeData.transactions as StoreTransaction[];
+      const response = await fetch(`${this.apiUrl}/transactions`);
+      if (!response.ok) {
+        throw new Error(`Erreur lors de la récupération des transactions: ${response.status}`);
+      }
+      const data = await response.json();
+      this.storeTransactions = data as StoreTransaction[];
     } catch (error) {
-      console.error('Erreur lors du chargement des transactions depuis store.json:', error);
-      this.storeTransactions = [];
+      console.error('Erreur lors du chargement des transactions depuis l\'API:', error);
     }
   }
 
@@ -188,32 +198,53 @@ class TransactionService {
     };
   }
 
-  private downloadUpdatedStoreJson(): void {
+  private async downloadUpdatedStoreJson(): Promise<void> {
     try {
-      // Créer une copie du store.json avec les transactions mises à jour
-      const updatedStore = { ...storeData, transactions: this.storeTransactions };
+      // Récupérer les données actuelles depuis l'API
+      const response = await fetch(`${this.apiUrl}/transactions`);
+      if (!response.ok) {
+        throw new Error(`Erreur lors de la récupération des transactions: ${response.status}`);
+      }
       
-      // Créer un blob et proposer le téléchargement
-      const jsonContent = JSON.stringify(updatedStore, null, 2);
+      // Récupérer les données des produits
+      const productsResponse = await fetch(`${this.apiUrl}/products`);
+      if (!productsResponse.ok) {
+        throw new Error(`Erreur lors de la récupération des produits: ${productsResponse.status}`);
+      }
+      
+      // Récupérer les données des clients
+      const clientsResponse = await fetch(`${this.apiUrl}/clients`);
+      if (!clientsResponse.ok) {
+        throw new Error(`Erreur lors de la récupération des clients: ${clientsResponse.status}`);
+      }
+      
+      // Créer un objet store complet
+      const updatedStoreData = {
+        transactions: await response.json(),
+        phones: (await productsResponse.json()).phones,
+        accessories: (await productsResponse.json()).accessories,
+        clients: await clientsResponse.json()
+      };
+      
+      // Convertir en JSON
+      const jsonContent = JSON.stringify(updatedStoreData, null, 2);
+      
+      // Créer un blob et le télécharger
       const blob = new Blob([jsonContent], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
-      
-      // Créer un lien de téléchargement
       const link = document.createElement('a');
       link.href = url;
       link.download = 'store.json';
-      
-      // Simuler un clic pour télécharger le fichier
       document.body.appendChild(link);
       link.click();
       
       // Nettoyer
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-      
-      console.log('Fichier store.json mis à jour et prêt à être téléchargé');
+      setTimeout(() => {
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }, 100);
     } catch (error) {
-      console.error('Erreur lors de la mise à jour du fichier store.json:', error);
+      console.error('Erreur lors de la génération du fichier store.json:', error);
     }
   }
 
@@ -244,12 +275,19 @@ class TransactionService {
     }
   }
 
+  /**
+   * Met à jour le stock des produits dans l'inventaire
+   * @param items Articles à déduire du stock
+   */
   private updateInventory(items: CartItem[]): void {
     try {
       // Mettre à jour le stock pour chaque article
       items.forEach(item => {
         inventoryService.decreaseStock(item.id, item.quantity);
       });
+      
+      // Forcer la synchronisation avec productsdb.json
+      inventoryService.syncWithProductsJson();
     } catch (error) {
       console.error('Erreur lors de la mise à jour de l\'inventaire:', error);
     }
