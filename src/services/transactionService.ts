@@ -261,12 +261,16 @@ class TransactionService {
         ...data
       };
       
+      // Mettre à jour le stock des produits
+      this.updateInventory(transaction.items);
       
       // Ajouter la transaction à la liste
       this.transactions.push(transaction);
       
       // Sauvegarder dans le stockage local
       this.saveToStorage();
+      
+      console.log('Transaction créée et stock mis à jour dans productsdb.json:', transaction.id);
       
       return transaction;
     } catch (error) {

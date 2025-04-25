@@ -304,7 +304,7 @@ class InventoryService {
 
     // Vérifier que le stock est suffisant
     if (product.stock < quantity) {
-      console.error(`Stock insuffisant: ${product.stock} < ${quantity}`);
+      console.warn(`Stock insuffisant pour le produit ${productId}: ${product.stock} < ${quantity}. Ajustement à la quantité disponible.`);
       // On met à jour quand même mais avec le stock disponible
       quantity = product.stock;
     }
@@ -324,6 +324,9 @@ class InventoryService {
       reference
     });
 
+    // Forcer la synchronisation avec productsdb.json
+    this.syncWithProductsJson();
+
     // Notifier que le stock a été mis à jour
     this.notify('stock_decreased', {
       product: updatedProduct,
@@ -332,6 +335,59 @@ class InventoryService {
       reference
     });
 
+    console.log(`Stock diminué pour le produit ${productId}: -${quantity} unités, nouveau stock: ${updatedProduct.stock}`);
+    return updatedProduct;
+  }
+
+  /**
+   * Augmente le stock d'un produit et enregistre un mouvement de stock
+   * @param productId ID du produit
+   * @param quantity Quantité à ajouter au stock
+   * @param reason Raison du mouvement (par défaut 'reception')
+   * @param reference Référence optionnelle
+   * @returns Le produit mis à jour ou undefined si le produit n'existe pas
+   */
+  public increaseStock(productId: string, quantity: number, reason: 'reception' | 'return' | 'adjustment' = 'reception', reference?: string): Product | undefined {
+    // Trouver le produit
+    const product = this.getProduct(productId);
+    if (!product) {
+      console.error(`Produit non trouvé: ${productId}`);
+      return undefined;
+    }
+
+    // Vérifier que la quantité est positive
+    if (quantity <= 0) {
+      console.error(`Quantité invalide: ${quantity}`);
+      return product;
+    }
+
+    // Mettre à jour le stock
+    const updatedProduct = this.updateProduct(productId, {
+      stock: product.stock + quantity,
+      lastUpdated: new Date().toISOString()
+    });
+
+    // Enregistrer le mouvement de stock
+    this.addMovement({
+      productId,
+      type: 'in',
+      quantity,
+      reason,
+      reference
+    });
+
+    // Forcer la synchronisation avec productsdb.json
+    this.syncWithProductsJson();
+
+    // Notifier que le stock a été mis à jour
+    this.notify('stock_increased', {
+      product: updatedProduct,
+      quantity,
+      reason,
+      reference
+    });
+
+    console.log(`Stock augmenté pour le produit ${productId}: +${quantity} unités, nouveau stock: ${updatedProduct.stock}`);
     return updatedProduct;
   }
 
