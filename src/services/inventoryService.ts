@@ -114,7 +114,7 @@ class InventoryService {
               price: product.price,
               stock: product.stock,
               added_date: product.lastUpdated,
-              imageUrl: product.imageUrl || ''
+              imageUrl: product.imageUrl // Ne pas remplacer par une chaîne vide si undefined
             });
           } else if (product.type === 'accessory') {
             accessories.push({
@@ -125,7 +125,7 @@ class InventoryService {
               price: product.price,
               stock: product.stock,
               added_date: product.lastUpdated,
-              imageUrl: product.imageUrl || ''
+              imageUrl: product.imageUrl // Ne pas remplacer par une chaîne vide si undefined
             });
           }
         });

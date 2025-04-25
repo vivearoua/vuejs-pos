@@ -19,7 +19,9 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
+// Augmenter la limite de taille pour les requêtes JSON
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // Middleware de journalisation des API
 app.use(logger.api);
@@ -63,32 +65,53 @@ app.post('/api/updateclients', (req, res) => {
 // Endpoint pour mettre à jour les produits
 app.post('/api/updateproducts', (req, res) => {
   try {
-    const { data } = req.body;
+    const { phones, accessories } = req.body;
     
-    if (!data || !data.phones || !data.accessories) {
-      return res.status(400).json({ error: 'Format de données invalide' });
-    }
+    // Lire le fichier existant
+    const productsDbPath = path.join(__dirname, '../src/data/productsdb.json');
+    const existingData = JSON.parse(fs.readFileSync(productsDbPath, 'utf8'));
     
-    // Lire le fichier actuel
-    const productsData = JSON.parse(fs.readFileSync(productsDbPath, 'utf8'));
-    
-    // Mettre à jour les produits
-    productsData.phones = data.phones;
-    productsData.accessories = data.accessories;
-    
-    // Écrire les données mises à jour
-    fs.writeFileSync(productsDbPath, JSON.stringify(productsData, null, 2), 'utf8');
-    
-    logger.info('Produits mis à jour dans productsdb.json', {
-      phones: data.phones.length,
-      accessories: data.accessories.length
+    // Préserver les imageUrl existantes si elles ne sont pas fournies dans la requête
+    const updatedPhones = phones.map(phone => {
+      // Si l'imageUrl est vide et qu'il existe un téléphone correspondant avec une imageUrl non vide
+      if (!phone.imageUrl) {
+        const existingPhone = existingData.phones.find(p => p.id === phone.id);
+        if (existingPhone && existingPhone.imageUrl) {
+          phone.imageUrl = existingPhone.imageUrl;
+        }
+      }
+      return phone;
     });
     
-    res.json({ success: true, message: 'Produits mis à jour avec succès' });
+    const updatedAccessories = accessories.map(accessory => {
+      // Si l'imageUrl est vide et qu'il existe un accessoire correspondant avec une imageUrl non vide
+      if (!accessory.imageUrl) {
+        const existingAccessory = existingData.accessories.find(a => a.id === accessory.id);
+        if (existingAccessory && existingAccessory.imageUrl) {
+          accessory.imageUrl = existingAccessory.imageUrl;
+        }
+      }
+      return accessory;
+    });
+    
+    // Mettre à jour les données
+    existingData.phones = updatedPhones;
+    existingData.accessories = updatedAccessories;
+    
+    // Écrire les données mises à jour
+    fs.writeFileSync(productsDbPath, JSON.stringify(existingData, null, 2));
+    
+    logger.info('Products database updated', {
+      phonesCount: updatedPhones.length,
+      accessoriesCount: updatedAccessories.length,
+      phonesWithImages: updatedPhones.filter(p => p.imageUrl).length,
+      accessoriesWithImages: updatedAccessories.filter(a => a.imageUrl).length
+    });
+    
+    res.status(200).json({ success: true });
   } catch (error) {
-    logger.error('Erreur lors de la mise à jour de productsdb.json:', error);
-    console.error('Erreur lors de la mise à jour de productsdb.json:', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la mise à jour des produits' });
+    logger.error('Error updating products database', { error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
